@@ -1,11 +1,11 @@
-const AWS 		= require('aws-sdk');
+const AWS       = require('aws-sdk');
 
-const DateUtil 	= require('./date_util');
+const DateUtil  = require('./date_util');
 const Extractor = require('./extractor');
 
 class Processor {
 
-	constructor(config, date) {
+    constructor(config, date) {
         this.table_source = config.get('processor.table_source');
         this.table_daily = config.get('processor.table_daily');
         this.date = date != undefined ? date : DateUtil.formatDate(new Date(), "YYYY-MM-DD", true);
@@ -40,53 +40,53 @@ class Processor {
         let db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
         var numbers = [];
 
-    	var params = {
-    		TableName: this.table_source,
-    		ProjectionExpression: "#dt, #ts, #tx",
-    		FilterExpression: "#dt = :selection",
-    		ExpressionAttributeNames: {
+        var params = {
+            TableName: this.table_source,
+            ProjectionExpression: "#dt, #ts, #tx",
+            FilterExpression: "#dt = :selection",
+            ExpressionAttributeNames: {
                 "#ts": "timestamp",
                 "#dt": "date",
                 "#tx": "text",
-    		},
-    		ExpressionAttributeValues: {
-         		":selection": { 'S': date }
-    		}
-		};
+            },
+            ExpressionAttributeValues: {
+                ":selection": { 'S': date }
+            }
+        };
 
-		function onScan(err, data) {
-    		
+        function onScan(err, data) {
+            
             if (err) {
-        		console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+                console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
                 return callback(err);
-    		}
+            }
 
-    		// Check all tweets
+            // Check all tweets
 
-        	data.Items.forEach(function(tweet) {
-           		console.log(tweet.timestamp['S'] + ": ", tweet.text['S']);
+            data.Items.forEach(function(tweet) {
+                console.log(tweet.timestamp['S'] + ": ", tweet.text['S']);
 
                 let value = Extractor.readDays(tweet.text['S']);
                 if (value) {
                     numbers.push(value);
                 }
-        	});
+            });
 
-        	// continue scanning when LastEvaluatedKey is defined
+            // continue scanning when LastEvaluatedKey is defined
 
-	        if (typeof data.LastEvaluatedKey != "undefined") {
-        	    console.log("Scanning for more...");
-            	params.ExclusiveStartKey = data.LastEvaluatedKey;
-            	db.scan(params, onScan);
-        	} else {
+            if (typeof data.LastEvaluatedKey != "undefined") {
+                console.log("Scanning for more...");
+                params.ExclusiveStartKey = data.LastEvaluatedKey;
+                db.scan(params, onScan);
+            } else {
 
                 // All tweets has been parsed. 
                 // Returns values
                 callback(null, numbers);
-    		}
-		}
+            }
+        }
 
-		db.scan(params, onScan);
+        db.scan(params, onScan);
     }
 
     _generateDailyStats(date, values, callback) {

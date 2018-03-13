@@ -3,10 +3,10 @@ const Generator  = require("./generator");
 
 describe("Generator", () => {
 
-	const db = fixtures.use("dynamodb");
-	const s3 = fixtures.use("s3");
+    const db = fixtures.use("dynamodb");
+    const s3 = fixtures.use("s3");
 	
-	const config = { generator: { table: "t", bucket: "b" } };
+    const config = { generator: { table: "t", bucket: "b" } };
 
     describe("generateSite", () => {
 

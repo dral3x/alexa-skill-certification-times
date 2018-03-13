@@ -6,19 +6,19 @@ const config = require('./src/conf');
 exports.handler = (event, context, callback) => {
     
     // Configure AWS services
-	AWS.config.update({region: config.get("aws.region")});
+    AWS.config.update({region: config.get("aws.region")});
 
-	// Configure Importer
-	let importer = new Importer(config);
+    // Configure Importer
+    let importer = new Importer(config);
 
-	// Execute
+    // Execute
     importer.importData((err) => {
 
-    	if (err) {
-			callback(err);
-    	} else {
-    		callback(null, 'Data has been imported successfully.');
-		}
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, 'Data has been imported successfully.');
+        }
 
     });
 

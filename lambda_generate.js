@@ -5,20 +5,20 @@ const config = require('./src/conf');
 
 exports.handler = (event, context, callback) => {
 
-	// Configure AWS services
-	AWS.config.update({region: config.get("aws.region")});
+    // Configure AWS services
+    AWS.config.update({region: config.get("aws.region")});
 
-	// Configure Generator
-	let generator = new Generator(config);
+    // Configure Generator
+    let generator = new Generator(config);
 
-	// Execute
+    // Execute
     generator.generateSite((err) => {
 
-    	if (err) {
-			callback(err);
-    	} else {
-    		callback(null, 'Site has been generated successfully.');
-		}
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, 'Site has been generated successfully.');
+        }
 
     });
 
