@@ -1,29 +1,27 @@
 const AWS 		= require('aws-sdk');
 
 const DateUtil 	= require('./date_util');
-const Counter   = require('./counter');
-const config 	= require('./conf');
+const Extractor = require('./extractor');
 
 class Processor {
 
-	constructor() {
+	constructor(config, date) {
         this.table_source = config.get('processor.table_source');
         this.table_daily = config.get('processor.table_daily');
+        this.date = date != undefined ? date : DateUtil.formatDate(new Date(), "YYYY-MM-DD", true);
     }
 
     generateStats(callback) {
 
-        let today = DateUtil.formatDate(new Date(), "YYYY-MM-DD", true);
+        console.log("Reference date is "+this.date);
 
-        console.log("Today is "+today);
-
-        this._fetchDailyData(today, (err, values) => {
+        this._fetchDailyData(this.date, (err, values) => {
 
             if (err) {
                 return callback(err);
             }
 
-            this._generateDailyStats(today, values, (err) => {
+            this._generateDailyStats(this.date, values, (err) => {
 
                 if (err) {
                     return callback(err);
@@ -68,7 +66,7 @@ class Processor {
         	data.Items.forEach(function(tweet) {
            		console.log(tweet.timestamp['S'] + ": ", tweet.text['S']);
 
-                let value = Counter.readDays(tweet.text['S']);
+                let value = Extractor.readDays(tweet.text['S']);
                 if (value) {
                     numbers.push(value);
                 }

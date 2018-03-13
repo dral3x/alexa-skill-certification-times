@@ -44,3 +44,11 @@ module.exports.use = function(fixture) {
         return fixtures[fixture].use();
     }
 };
+
+module.exports.createConfig = function(obj) {
+    return { 
+        get: (key) => { 
+            return obj[key];
+        } 
+    }
+};

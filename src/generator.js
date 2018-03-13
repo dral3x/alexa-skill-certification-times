@@ -1,12 +1,12 @@
-const AWS 		= require('aws-sdk');
+const AWS 		  = require('aws-sdk');
 const Mustache	= require('mustache');
 const DateUtil 	= require('./date_util');
 
 class Generator {
 
 	constructor(config) {
-        this.db 	= new AWS.DynamoDB({ apiVersion: '2012-10-08' });
-        this.table 	= config.get('generator.table');
+        this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
+        this.table = config.get('generator.table');
         this.bucket = config.get('generator.bucket');
     }
 

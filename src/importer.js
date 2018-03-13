@@ -2,14 +2,14 @@ const Twitter 	= require('twit');
 const AWS 		= require('aws-sdk');
 
 const DateUtil 	= require('./date_util');
-const config 	= require('./conf');
 
 class Importer {
 
-	constructor() {
-        this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
+	constructor(config) {
         this.table = config.get('importer.table');
         this.hashtag = '#skillcertificationtime';
+        this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
+        this.twitter_config = config.get("twitter");
     }
 
     importData(callback) {
@@ -55,7 +55,7 @@ class Importer {
 
     fetchNewData(last_id, callback) {
 		
-		var tw_client = new Twitter(config.get("twitter"));
+		var tw_client = new Twitter(this.twitter_config);
 		var params = { 'q': this.hashtag };
 		if (last_id) {
 			params["since_id"] = last_id;
@@ -92,6 +92,7 @@ class Importer {
 		// DEBUG
 		//console.log('statuses: '+ JSON.stringify(statuses));
 
+		var dates = new Set();
 		var requests = [];
 
 		for (var i = 0, len = statuses.length; i < len; i++) {
@@ -117,11 +118,13 @@ class Importer {
            			}
 				}
        		});
+
+       		dates.add(date);
 		}
 
 		if (requests.length == 0) {
 			console.log("Nothing to import");
-			return callback(null);
+			return callback(null, []);
 		}
 
 		// Create the DynamoDB service object
@@ -138,7 +141,7 @@ class Importer {
     			callback(err);
   			} else {
     			console.log("Success", data);
-    			callback(null);
+    			callback(null, Array.from(dates));
   			}
 		});
     }

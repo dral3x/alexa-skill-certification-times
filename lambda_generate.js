@@ -1,7 +1,7 @@
-const AWS 		= require('aws-sdk');
+const AWS = require('aws-sdk');
 const Generator = require('./src/generator');
 
-const config 	= require('./src/conf');
+const config = require('./src/conf');
 
 exports.handler = (event, context, callback) => {
 

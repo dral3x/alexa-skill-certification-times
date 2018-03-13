@@ -1,13 +1,18 @@
-// Configure AWS services
-const config = require('./src/conf');
 const AWS = require('aws-sdk');
-AWS.config.update({region: config.get("aws.region")});
-
 const Processor = require('./src/processor');
+
+const config = require('./src/conf');
 
 exports.handler = (event, context, callback) => {
     
-    new Processor().generateStats((err) => {
+    // Configure AWS services
+	AWS.config.update({region: config.get("aws.region")});
+
+	// Configure Processor
+	let processor = new Processor(config);
+
+	// Execute
+    processor.generateStats((err) => {
 
     	if (err) {
 			callback(err);

@@ -1,13 +1,18 @@
-// Configure AWS services
-const config = require('./src/conf');
 const AWS = require('aws-sdk');
-AWS.config.update({region: config.get("aws.region")});
-
 const Importer = require('./src/importer');
+
+const config = require('./src/conf');
 
 exports.handler = (event, context, callback) => {
     
-    new Importer().importData((err) => {
+    // Configure AWS services
+	AWS.config.update({region: config.get("aws.region")});
+
+	// Configure Importer
+	let importer = new Importer(config);
+
+	// Execute
+    importer.importData((err) => {
 
     	if (err) {
 			callback(err);
