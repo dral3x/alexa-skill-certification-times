@@ -1,0 +1,1752 @@
+[
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sun Mar 11 07:59:43 +0000 2018",
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "urls": [
+        {
+          "display_url": "twitter.com/i/web/status/9…",
+          "expanded_url": "https://twitter.com/i/web/status/972743858927828992",
+          "indices": [
+            117,
+            140
+          ],
+          "url": "https://t.co/5xoxTxIrip"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972743858927829000,
+    "id_str": "972743858927828992",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+    "text": "Latest version, with Wikipedia AR POI markers, 2 finger rotation of the horizon line, and some other fixes is now a… https://t.co/5xoxTxIrip",
+    "truncated": true,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Mon Dec 18 11:50:44 +0000 2017",
+      "default_profile": true,
+      "default_profile_image": false,
+      "description": "Find out what that thing is on the horizon. Works Worldwide!\n\nGet the App: https://t.co/I7t0SOumWM",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "onelink.to/eqsvav",
+              "expanded_url": "http://onelink.to/eqsvav",
+              "indices": [
+                75,
+                98
+              ],
+              "url": "https://t.co/I7t0SOumWM"
+            }
+          ]
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "horizon-explorer.com",
+              "expanded_url": "http://horizon-explorer.com",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/hjmAlGepMo"
+            }
+          ]
+        }
+      },
+      "favourites_count": 1780,
+      "follow_request_sent": false,
+      "followers_count": 169,
+      "following": false,
+      "friends_count": 223,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 942723802768773100,
+      "id_str": "942723802768773120",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 0,
+      "location": "Bath, England",
+      "name": "Horizon Explorer",
+      "notifications": false,
+      "profile_background_color": "F5F8FA",
+      "profile_background_image_url": null,
+      "profile_background_image_url_https": null,
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/942723802768773120/1513600084",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/942726896244191232/dIU56pm3_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/942726896244191232/dIU56pm3_normal.jpg",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "Horizon_Explore",
+      "statuses_count": 215,
+      "time_zone": "London",
+      "translator_type": "none",
+      "url": "https://t.co/hjmAlGepMo",
+      "utc_offset": 0,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sun Mar 11 00:16:40 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            90,
+            99
+          ],
+          "text": "appstore"
+        },
+        {
+          "indices": [
+            101,
+            115
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 1,
+    "favorited": false,
+    "geo": null,
+    "id": 972627328818974700,
+    "id_str": "972627328818974722",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "Oh my, 40 minutes from \"Complete Processing\" to \"Ready for Sale\". Congrats reviewers from #appstore! #iosreviewtime",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Sep 20 08:51:10 +0000 2016",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Aidlab is a smart and powerful chest strap. Follow your health. Improve your performance. Have fun exploring the possibilities.",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "aidlab.com",
+              "expanded_url": "https://www.aidlab.com",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/MnHPyyoqa4"
+            }
+          ]
+        }
+      },
+      "favourites_count": 22,
+      "follow_request_sent": false,
+      "followers_count": 23,
+      "following": false,
+      "friends_count": 40,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 778154522329944000,
+      "id_str": "778154522329944064",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "pl",
+      "listed_count": 1,
+      "location": "Gdańsk, Polska",
+      "name": "Aidlab",
+      "notifications": false,
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/778154522329944064/1507048025",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/972458875650748417/IDxJzwWt_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/972458875650748417/IDxJzwWt_normal.jpg",
+      "profile_link_color": "FC7580",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "000000",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "getAidlab",
+      "statuses_count": 38,
+      "time_zone": null,
+      "translator_type": "none",
+      "url": "https://t.co/MnHPyyoqa4",
+      "utc_offset": null,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sat Mar 10 22:17:47 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            11,
+            25
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [
+        {
+          "display_url": "twitter.com/i/web/status/9…",
+          "expanded_url": "https://twitter.com/i/web/status/972597411007860736",
+          "indices": [
+            117,
+            140
+          ],
+          "url": "https://t.co/JSv6JN68Qg"
+        }
+      ],
+      "user_mentions": [
+        {
+          "id": 2971713735,
+          "id_str": "2971713735",
+          "indices": [
+            0,
+            10
+          ],
+          "name": "Figure",
+          "screen_name": "figureink"
+        }
+      ]
+    },
+    "favorite_count": 9,
+    "favorited": false,
+    "geo": null,
+    "id": 972597411007860700,
+    "id_str": "972597411007860736",
+    "in_reply_to_screen_name": "figureink",
+    "in_reply_to_status_id": 972523313502318600,
+    "in_reply_to_status_id_str": "972523313502318592",
+    "in_reply_to_user_id": 2971713735,
+    "in_reply_to_user_id_str": "2971713735",
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "@figureink #iosreviewtime 0 days 19 minutes. 😱 Might be because almost only change I have done was adding the NSPho… https://t.co/JSv6JN68Qg",
+    "truncated": true,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Thu Feb 26 13:59:39 +0000 2009",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Designer & developer",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "mkj.is",
+              "expanded_url": "http://mkj.is/",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/m2lfZ7YWzH"
+            }
+          ]
+        }
+      },
+      "favourites_count": 96,
+      "follow_request_sent": false,
+      "followers_count": 113,
+      "following": false,
+      "friends_count": 150,
+      "geo_enabled": true,
+      "has_extended_profile": true,
+      "id": 22010825,
+      "id_str": "22010825",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 5,
+      "location": "Brno, Czech republic",
+      "name": "Matěj Kašpar Jirásek",
+      "notifications": false,
+      "profile_background_color": "BF1269",
+      "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/4988454/bg.png",
+      "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/4988454/bg.png",
+      "profile_background_tile": true,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/22010825/1406279372",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/2924147912/f724626ae34670a0ce06f53e7b927a2b_normal.png",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/2924147912/f724626ae34670a0ce06f53e7b927a2b_normal.png",
+      "profile_link_color": "BF1269",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "EBEBEB",
+      "profile_text_color": "383838",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "mkj_is",
+      "statuses_count": 286,
+      "time_zone": "Prague",
+      "translator_type": "regular",
+      "url": "https://t.co/m2lfZ7YWzH",
+      "utc_offset": 3600,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sat Mar 10 21:10:42 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972580527524921300,
+    "id_str": "972580527524921344",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "#iosreviewtime They are awesome for new version updates! It took 0 days and 44 minutes to review my update!",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Apr 16 20:37:30 +0000 2013",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Do neither what I do, nor what I say, unless the two agree and point the same way.",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "uofucloudcapstone.wordpress.com",
+              "expanded_url": "http://uofucloudcapstone.wordpress.com",
+              "indices": [
+                0,
+                22
+              ],
+              "url": "http://t.co/ci4Q2T2hZC"
+            }
+          ]
+        }
+      },
+      "favourites_count": 13,
+      "follow_request_sent": false,
+      "followers_count": 46,
+      "following": false,
+      "friends_count": 30,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 1357815966,
+      "id_str": "1357815966",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 10,
+      "location": "USA",
+      "name": "Kent Johnson",
+      "notifications": false,
+      "profile_background_color": "EBEBEB",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme7/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme7/bg.gif",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/1357815966/1443134145",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/647177364036698113/p4sBgd1y_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/647177364036698113/p4sBgd1y_normal.jpg",
+      "profile_link_color": "990000",
+      "profile_sidebar_border_color": "DFDFDF",
+      "profile_sidebar_fill_color": "F3F3F3",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "Kent8Johnson",
+      "statuses_count": 266,
+      "time_zone": null,
+      "translator_type": "none",
+      "url": "http://t.co/ci4Q2T2hZC",
+      "utc_offset": null,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sat Mar 10 12:00:08 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            99,
+            113
+          ],
+          "text": "iosreviewtime"
+        },
+        {
+          "indices": [
+            117,
+            131
+          ],
+          "text": "macreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [
+        {
+          "display_url": "appreviewtimes.com",
+          "expanded_url": "http://appreviewtimes.com",
+          "indices": [
+            58,
+            81
+          ],
+          "url": "https://t.co/JkX4SnMuTP"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972441976317599700,
+    "id_str": "972441976317599744",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://reviewtimes.shinydevelopment.com\" rel=\"nofollow\">App Store Review Times</a>",
+    "text": "Average review time for 10 Mar. iOS: 2 days, Mac: 5 days. https://t.co/JkX4SnMuTP. Contribute with #iosreviewtime or #macreviewtime.",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Apr 05 11:35:01 +0000 2011",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "How long does an App Store review take? Get a daily average and then contribute your data.",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "appreviewtimes.com",
+              "expanded_url": "http://appreviewtimes.com",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/6OrrkLXtPz"
+            }
+          ]
+        }
+      },
+      "favourites_count": 0,
+      "follow_request_sent": false,
+      "followers_count": 7247,
+      "following": false,
+      "friends_count": 1,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 277443779,
+      "id_str": "277443779",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 114,
+      "location": "",
+      "name": "Apple Review Times",
+      "notifications": false,
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/448469467761106944/MPcbAOTE_normal.png",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/448469467761106944/MPcbAOTE_normal.png",
+      "profile_link_color": "1B95E0",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "000000",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "appreviewtimes",
+      "statuses_count": 1924,
+      "time_zone": "London",
+      "translator_type": "none",
+      "url": "https://t.co/6OrrkLXtPz",
+      "utc_offset": 0,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Sat Mar 10 02:58:09 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            102,
+            109
+          ],
+          "text": "iOSdev"
+        },
+        {
+          "indices": [
+            110,
+            124
+          ],
+          "text": "iOSreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972305581372526600,
+    "id_str": "972305581372526595",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://itunes.apple.com/us/app/twitter/id409789998?mt=12\" rel=\"nofollow\">Twitter for Mac</a>",
+    "text": "As I suspected my a11yTools iOS app was rejected for stupid reasons that make no sense. Trying again. #iOSdev #iOSreviewtime half a day.",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Mar 17 18:06:41 +0000 2009",
+      "default_profile": true,
+      "default_profile_image": false,
+      "description": "Mobile Accessibility Specialist @Pearson Co-Organizer Austin #a11y Meetup @a11yATX Focus on iOS, Android, JavaScript, HTML, CSS, WAI-ARIA, WCAG 2.0, Section 508",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "accessw3.com",
+              "expanded_url": "http://accessw3.com",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/0cWlFAOQBV"
+            }
+          ]
+        }
+      },
+      "favourites_count": 3541,
+      "follow_request_sent": false,
+      "followers_count": 3322,
+      "following": false,
+      "friends_count": 1354,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 24923263,
+      "id_str": "24923263",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 455,
+      "location": "Austin, TX",
+      "name": "Paul J. Adam",
+      "notifications": false,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/24923263/1450191436",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/924668396779778049/05rk70GE_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/924668396779778049/05rk70GE_normal.jpg",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "pauljadam",
+      "statuses_count": 28737,
+      "time_zone": "Central Time (US & Canada)",
+      "translator_type": "none",
+      "url": "https://t.co/0cWlFAOQBV",
+      "utc_offset": -18000,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 22:15:36 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            37,
+            51
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972234474787188700,
+    "id_str": "972234474787188736",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "App reviewed in less than 15 minutes #iosreviewtime 🎉 It takes more time to process uploaded builds than to get it reviewed.",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Fri Feb 19 22:40:54 +0000 2010",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "iPhone App Developer.",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "favourites_count": 60,
+      "follow_request_sent": false,
+      "followers_count": 51,
+      "following": false,
+      "friends_count": 41,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 115777472,
+      "id_str": "115777472",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 4,
+      "location": "",
+      "name": "Samuel Onesimus",
+      "notifications": false,
+      "profile_background_color": "022330",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme15/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme15/bg.png",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/115777472/1418538323",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/3534009029/89b7137164638052dffdf7ffa0e3a729_normal.jpeg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/3534009029/89b7137164638052dffdf7ffa0e3a729_normal.jpeg",
+      "profile_link_color": "0084B4",
+      "profile_sidebar_border_color": "A8C7F7",
+      "profile_sidebar_fill_color": "C0DFEC",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "samonesim",
+      "statuses_count": 89,
+      "time_zone": "New Delhi",
+      "translator_type": "none",
+      "url": null,
+      "utc_offset": 19800,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 20:15:54 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.twitter.com/AKmwCQRWV0",
+          "expanded_url": "https://twitter.com/kvanderd/status/972204348984803328/photo/1",
+          "id": 972204275743965200,
+          "id_str": "972204275743965185",
+          "indices": [
+            35,
+            58
+          ],
+          "media_url": "http://pbs.twimg.com/media/DX32o0jVwAE5Zor.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/DX32o0jVwAE5Zor.jpg",
+          "sizes": {
+            "large": {
+              "h": 204,
+              "resize": "fit",
+              "w": 1900
+            },
+            "medium": {
+              "h": 129,
+              "resize": "fit",
+              "w": 1200
+            },
+            "small": {
+              "h": 73,
+              "resize": "fit",
+              "w": 680
+            },
+            "thumb": {
+              "h": 150,
+              "resize": "crop",
+              "w": 150
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/AKmwCQRWV0"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "extended_entities": {
+      "media": [
+        {
+          "display_url": "pic.twitter.com/AKmwCQRWV0",
+          "expanded_url": "https://twitter.com/kvanderd/status/972204348984803328/photo/1",
+          "id": 972204275743965200,
+          "id_str": "972204275743965185",
+          "indices": [
+            35,
+            58
+          ],
+          "media_url": "http://pbs.twimg.com/media/DX32o0jVwAE5Zor.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/DX32o0jVwAE5Zor.jpg",
+          "sizes": {
+            "large": {
+              "h": 204,
+              "resize": "fit",
+              "w": 1900
+            },
+            "medium": {
+              "h": 129,
+              "resize": "fit",
+              "w": 1200
+            },
+            "small": {
+              "h": 73,
+              "resize": "fit",
+              "w": 680
+            },
+            "thumb": {
+              "h": 150,
+              "resize": "crop",
+              "w": 150
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/AKmwCQRWV0"
+        }
+      ]
+    },
+    "favorite_count": 1,
+    "favorited": false,
+    "geo": null,
+    "id": 972204348984803300,
+    "id_str": "972204348984803328",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "#iosreviewtime 4 days and counting https://t.co/AKmwCQRWV0",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Jun 07 23:39:58 +0000 2011",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Software Engineer w/ a Theater Degree @UCSanDiego, Bay Area Native🖖",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "codetocanvas.com",
+              "expanded_url": "https://codetocanvas.com/",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/KzUFfeh2AN"
+            }
+          ]
+        }
+      },
+      "favourites_count": 78,
+      "follow_request_sent": false,
+      "followers_count": 259,
+      "following": false,
+      "friends_count": 242,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 312973495,
+      "id_str": "312973495",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 15,
+      "location": "San Francisco",
+      "name": "KatharineVanderDrift",
+      "notifications": false,
+      "profile_background_color": "FFFFFF",
+      "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/632122638/xcdd0b08b0a57033eadad9c6ac31c2bd.png",
+      "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/632122638/xcdd0b08b0a57033eadad9c6ac31c2bd.png",
+      "profile_background_tile": true,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/812090124129308673/TBkLJKEd_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/812090124129308673/TBkLJKEd_normal.jpg",
+      "profile_link_color": "4A913C",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "30BEDA",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "kvanderd",
+      "statuses_count": 205,
+      "time_zone": "Arizona",
+      "translator_type": "none",
+      "url": "https://t.co/KzUFfeh2AN",
+      "utc_offset": -25200,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 19:42:16 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972195884728569900,
+    "id_str": "972195884728569856",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "#iosreviewtime 5 days and counting",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Mon Mar 22 15:28:00 +0000 2010",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "I love shit. Shit is awesome. I like shitting. I like writing about shitting. I like writing shit. Yeah.",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "favourites_count": 1,
+      "follow_request_sent": false,
+      "followers_count": 10,
+      "following": false,
+      "friends_count": 34,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 125362969,
+      "id_str": "125362969",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 0,
+      "location": "Monrovia, Liberia",
+      "name": "Big Pooper",
+      "notifications": false,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/85987488/220px-Bernard_Picart_-_The_Perfumer.jpg",
+      "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/85987488/220px-Bernard_Picart_-_The_Perfumer.jpg",
+      "profile_background_tile": true,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/768234528/220px-Bernard_Picart_-_The_Perfumer_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/768234528/220px-Bernard_Picart_-_The_Perfumer_normal.jpg",
+      "profile_link_color": "0084B4",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "takin_a_shit",
+      "statuses_count": 93,
+      "time_zone": "Monrovia",
+      "translator_type": "none",
+      "url": null,
+      "utc_offset": 0,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 12:00:08 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            98,
+            112
+          ],
+          "text": "iosreviewtime"
+        },
+        {
+          "indices": [
+            116,
+            130
+          ],
+          "text": "macreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [
+        {
+          "display_url": "appreviewtimes.com",
+          "expanded_url": "http://appreviewtimes.com",
+          "indices": [
+            57,
+            80
+          ],
+          "url": "https://t.co/JkX4SnMuTP"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972079587638304800,
+    "id_str": "972079587638304768",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://reviewtimes.shinydevelopment.com\" rel=\"nofollow\">App Store Review Times</a>",
+    "text": "Average review time for 09 Mar. iOS: 1 day, Mac: 5 days. https://t.co/JkX4SnMuTP. Contribute with #iosreviewtime or #macreviewtime.",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Apr 05 11:35:01 +0000 2011",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "How long does an App Store review take? Get a daily average and then contribute your data.",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "appreviewtimes.com",
+              "expanded_url": "http://appreviewtimes.com",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/6OrrkLXtPz"
+            }
+          ]
+        }
+      },
+      "favourites_count": 0,
+      "follow_request_sent": false,
+      "followers_count": 7247,
+      "following": false,
+      "friends_count": 1,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 277443779,
+      "id_str": "277443779",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 114,
+      "location": "",
+      "name": "Apple Review Times",
+      "notifications": false,
+      "profile_background_color": "000000",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/448469467761106944/MPcbAOTE_normal.png",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/448469467761106944/MPcbAOTE_normal.png",
+      "profile_link_color": "1B95E0",
+      "profile_sidebar_border_color": "000000",
+      "profile_sidebar_fill_color": "000000",
+      "profile_text_color": "000000",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "appreviewtimes",
+      "statuses_count": 1924,
+      "time_zone": "London",
+      "translator_type": "none",
+      "url": "https://t.co/6OrrkLXtPz",
+      "utc_offset": 0,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 10:17:55 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        },
+        {
+          "indices": [
+            68,
+            74
+          ],
+          "text": "kudos"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.twitter.com/CuKN7khH1X",
+          "expanded_url": "https://twitter.com/xcuze/status/972053862965305344/photo/1",
+          "id": 972053846028705800,
+          "id_str": "972053846028705792",
+          "indices": [
+            82,
+            105
+          ],
+          "media_url": "http://pbs.twimg.com/media/DX1t0qMX4AAI76n.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/DX1t0qMX4AAI76n.jpg",
+          "sizes": {
+            "large": {
+              "h": 520,
+              "resize": "fit",
+              "w": 1282
+            },
+            "medium": {
+              "h": 487,
+              "resize": "fit",
+              "w": 1200
+            },
+            "small": {
+              "h": 276,
+              "resize": "fit",
+              "w": 680
+            },
+            "thumb": {
+              "h": 150,
+              "resize": "crop",
+              "w": 150
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/CuKN7khH1X"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": [
+        {
+          "id": 380749300,
+          "id_str": "380749300",
+          "indices": [
+            75,
+            81
+          ],
+          "name": "Apple",
+          "screen_name": "Apple"
+        }
+      ]
+    },
+    "extended_entities": {
+      "media": [
+        {
+          "display_url": "pic.twitter.com/CuKN7khH1X",
+          "expanded_url": "https://twitter.com/xcuze/status/972053862965305344/photo/1",
+          "id": 972053846028705800,
+          "id_str": "972053846028705792",
+          "indices": [
+            82,
+            105
+          ],
+          "media_url": "http://pbs.twimg.com/media/DX1t0qMX4AAI76n.jpg",
+          "media_url_https": "https://pbs.twimg.com/media/DX1t0qMX4AAI76n.jpg",
+          "sizes": {
+            "large": {
+              "h": 520,
+              "resize": "fit",
+              "w": 1282
+            },
+            "medium": {
+              "h": 487,
+              "resize": "fit",
+              "w": 1200
+            },
+            "small": {
+              "h": 276,
+              "resize": "fit",
+              "w": 680
+            },
+            "thumb": {
+              "h": 150,
+              "resize": "crop",
+              "w": 150
+            }
+          },
+          "type": "photo",
+          "url": "https://t.co/CuKN7khH1X"
+        }
+      ]
+    },
+    "favorite_count": 2,
+    "favorited": false,
+    "geo": null,
+    "id": 972053862965305300,
+    "id_str": "972053862965305344",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "text": "#iosreviewtime 0 days 1 hours 15 minutes\n\nWow, that was unexpected. #kudos @Apple https://t.co/CuKN7khH1X",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Sun Sep 28 12:49:36 +0000 2008",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Software Developer & Enthusiast; Caffeine-Based Lifeform",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "about.me/floriankrueger",
+              "expanded_url": "http://about.me/floriankrueger",
+              "indices": [
+                0,
+                22
+              ],
+              "url": "http://t.co/cLR2xAhpp3"
+            }
+          ]
+        }
+      },
+      "favourites_count": 385,
+      "follow_request_sent": false,
+      "followers_count": 128,
+      "following": false,
+      "friends_count": 146,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 16497772,
+      "id_str": "16497772",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 16,
+      "location": "Munich, Germany",
+      "name": "floriankrueger",
+      "notifications": false,
+      "profile_background_color": "131516",
+      "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/378800000085326876/a0f77b0807499a41bdfbe71032912af8.jpeg",
+      "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/378800000085326876/a0f77b0807499a41bdfbe71032912af8.jpeg",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/16497772/1440785685",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/637326380418629632/kQCnyVXR_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/637326380418629632/kQCnyVXR_normal.jpg",
+      "profile_link_color": "006699",
+      "profile_sidebar_border_color": "FFFFFF",
+      "profile_sidebar_fill_color": "EFEFEF",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "xcuze",
+      "statuses_count": 1277,
+      "time_zone": "Berlin",
+      "translator_type": "none",
+      "url": "http://t.co/cLR2xAhpp3",
+      "utc_offset": 3600,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 08:49:43 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972031666741968900,
+    "id_str": "972031666741968896",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://tapbots.com/tweetbot\" rel=\"nofollow\">Tweetbot for iΟS</a>",
+    "text": "#iosreviewtime 7 days",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Tue Mar 31 10:45:07 +0000 2009",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Mac and iOS developer: HOsy software.\nI like Triathlon and Cows.",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "HOsy.de",
+              "expanded_url": "http://www.HOsy.de",
+              "indices": [
+                0,
+                23
+              ],
+              "url": "https://t.co/s0WFLZhnR4"
+            }
+          ]
+        }
+      },
+      "favourites_count": 678,
+      "follow_request_sent": false,
+      "followers_count": 163,
+      "following": false,
+      "friends_count": 223,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 27848282,
+      "id_str": "27848282",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 12,
+      "location": "Kronach, Deutschland",
+      "name": "Matthias Hühne",
+      "notifications": false,
+      "profile_background_color": "B2DFDA",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme13/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme13/bg.gif",
+      "profile_background_tile": false,
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/27848282/1412015305",
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1266086928/me1_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1266086928/me1_normal.jpg",
+      "profile_link_color": "93A644",
+      "profile_sidebar_border_color": "EEEEEE",
+      "profile_sidebar_fill_color": "FFFFFF",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "hosymat",
+      "statuses_count": 1827,
+      "time_zone": "Berlin",
+      "translator_type": "none",
+      "url": "https://t.co/s0WFLZhnR4",
+      "utc_offset": 3600,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 08:37:27 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            60,
+            69
+          ],
+          "text": "pquizapp"
+        },
+        {
+          "indices": [
+            91,
+            105
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [
+        {
+          "display_url": "twitter.com/i/web/status/9…",
+          "expanded_url": "https://twitter.com/i/web/status/972028581277773824",
+          "indices": [
+            107,
+            130
+          ],
+          "url": "https://t.co/mGO9zZfthT"
+        }
+      ],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 972028581277773800,
+    "id_str": "972028581277773824",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "text": "Hired those guys to help my update in app store ➡️  Pquiz / #pquizapp\nApple hear me out!!\n\n#iosreviewtime… https://t.co/mGO9zZfthT",
+    "truncated": true,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Fri Nov 13 20:35:19 +0000 2015",
+      "default_profile": true,
+      "default_profile_image": false,
+      "description": "",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "favourites_count": 2,
+      "follow_request_sent": false,
+      "followers_count": 10,
+      "following": false,
+      "friends_count": 47,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 4181248083,
+      "id_str": "4181248083",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 0,
+      "location": "Istanbul, Turkey",
+      "name": "Mustafa Mert",
+      "notifications": false,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/735096501718913024/gyPeT5kG_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/735096501718913024/gyPeT5kG_normal.jpg",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "MertMmertisik81",
+      "statuses_count": 26,
+      "time_zone": null,
+      "translator_type": "none",
+      "url": null,
+      "utc_offset": null,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 05:10:56 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 971976607790280700,
+    "id_str": "971976607790280704",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "en",
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://tapbots.com/tweetbot\" rel=\"nofollow\">Tweetbot for iΟS</a>",
+    "text": "#iosreviewtime 6 hours",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Sat Jul 31 05:53:10 +0000 2010",
+      "default_profile": true,
+      "default_profile_image": false,
+      "description": "",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "flex-it.dk",
+              "expanded_url": "http://www.flex-it.dk",
+              "indices": [
+                0,
+                22
+              ],
+              "url": "http://t.co/8XiWU3cAF9"
+            }
+          ]
+        }
+      },
+      "favourites_count": 11,
+      "follow_request_sent": false,
+      "followers_count": 52,
+      "following": false,
+      "friends_count": 85,
+      "geo_enabled": false,
+      "has_extended_profile": false,
+      "id": 173021117,
+      "id_str": "173021117",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 3,
+      "location": "Denmark",
+      "name": "Bo Kingo Damgaard",
+      "notifications": false,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/534086991743582208/hE1fm4fN_normal.jpeg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/534086991743582208/hE1fm4fN_normal.jpeg",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "protected": false,
+      "screen_name": "BoKDamgaard",
+      "statuses_count": 631,
+      "time_zone": "Copenhagen",
+      "translator_type": "none",
+      "url": "http://t.co/8XiWU3cAF9",
+      "utc_offset": 3600,
+      "verified": false
+    }
+  },
+  {
+    "contributors": null,
+    "coordinates": null,
+    "created_at": "Fri Mar 09 01:07:25 +0000 2018",
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            0,
+            14
+          ],
+          "text": "iosreviewtime"
+        }
+      ],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "geo": null,
+    "id": 971915326295220200,
+    "id_str": "971915326295220224",
+    "in_reply_to_screen_name": null,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "is_quote_status": false,
+    "lang": "und",
+    "metadata": {
+      "iso_language_code": "und",
+      "result_type": "recent"
+    },
+    "place": null,
+    "retweet_count": 0,
+    "retweeted": false,
+    "source": "<a href=\"http://twitterrific.com\" rel=\"nofollow\">Twitterrific for Mac</a>",
+    "text": "#iosreviewtime 1 day",
+    "truncated": false,
+    "user": {
+      "contributors_enabled": false,
+      "created_at": "Wed Jul 20 08:01:55 +0000 2011",
+      "default_profile": false,
+      "default_profile_image": false,
+      "description": "Software dev with a funny accent",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "favourites_count": 877,
+      "follow_request_sent": false,
+      "followers_count": 142,
+      "following": false,
+      "friends_count": 686,
+      "geo_enabled": true,
+      "has_extended_profile": false,
+      "id": 338896678,
+      "id_str": "338896678",
+      "is_translation_enabled": false,
+      "is_translator": false,
+      "lang": "en",
+      "listed_count": 6,
+      "location": "Wellington, New Zealand",
+      "name": "Arnold",
+      "notifications": false,
+      "profile_background_color": "D0DCDF",
+      "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/324488208/twitter2.png",
+      "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/324488208/twitter2.png",
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/967644514713128960/70Vn1CCc_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/967644514713128960/70Vn1CCc_normal.jpg",
+      "profile_link_color": "30587E",
+      "profile_sidebar_border_color": "FFFFFF",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": false,
+      "protected": false,
+      "screen_name": "foreignfilm",
+      "statuses_count": 2320,
+      "time_zone": "Wellington",
+      "translator_type": "none",
+      "url": null,
+      "utc_offset": 46800,
+      "verified": false
+    }
+  }
+]

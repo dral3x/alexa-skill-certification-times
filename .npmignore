@@ -1,0 +1,14 @@
+assets
+conf/default.js
+conf/prod.js
+conf/test.js
+conf/dev.js
+dist
+docs
+fixtures
+src/**/*_spec.js
+Gruntfile.js
+secrets.json
+jasmine.json
+*.md
+yarn.lock

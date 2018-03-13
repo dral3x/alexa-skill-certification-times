@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Testing</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <style type="text/css">
+
+body {
+	font-family: "Source Sans Pro", sans-serif;
+  font-size: 21px;
+}
+
+.header {
+	background-color: black;
+  color: white;
+  font-weight: normal;
+  text-align: center;
+}
+
+.huge {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.accent {
+  color: #5A99FF;
+}
+
+.f_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.f_item {
+
+}
+
+.faq {
+
+}
+
+.footer {
+
+}
+
+    </style>
+
+    <!-- Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Adverage time');
+
+        data.addRows([
+          [new Date('2018-03-01'),  8],
+          [new Date('2018-03-02'),  5],
+          [new Date('2018-03-03'),  4],
+          [new Date('2018-03-04'),  5],
+          [new Date('2018-03-05'),  3],
+          [new Date('2018-03-06'),  5],
+          [new Date('2018-03-07'),  6],
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Trend graphs for the last 30 days',
+          },
+          legend: {
+            position: "none"
+          },
+          width: 500,
+          height: 300
+        };
+
+        var chart = new google.charts.Line(document.getElementById('chart'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+      }
+    </script>
+
+  </head>
+  <body>
+  		<div class="header f_container">
+  			<div class="image f_item">
+          <img src="alexa-devices.png" />
+        </div>
+        <div class="huge">Average <span class="accent">Alexa Skill</span> Certification Times</div>
+  		</div>
+
+
+  		<div class="container">
+        <div class="summary">
+          <div class="title">The average time of the last 30 days</div>
+
+          <div class="huge accent">4 days 5 hours</div>
+
+          <div><b>-1 day</b> compared to the previous cycle</div>
+        </div>
+
+  			<div class="title">Trends graph for the last 30 days</div>
+
+  			{{#last_7_days}}
+    		<p>{{date}}: <b>{{count}}</b></p>
+    		{{/last_7_days}}
+
+        <div id="chart"></div>
+
+  		</div>
+  		<div class="faq">
+  			<p>FAQ</p>
+  		</div>
+  		<div class="footer">
+  			<div class="disclaimer">
+          DISCLAIMER: This website is not associated with the Amazon Inc. in any way and it is not an official version.
+          <br />
+          Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
+          <br />
+          Twitter and Tweet are trademarks of Twitter Inc.
+        </div>
+        
+        <div>
+          Created by Alessandro Calzavara, with the precious help of <a href="https://twitter.com/brigitadaisy" target="_blank">Brigita</a> and <a href="https://twitter.com/emanuele_r" target="_blank">Emanuele</a>.
+        </div>
+
+        <div>
+          This website is updated every hour. Last update was {{ now }}
+        </div>
+  		</div>
+  </body>
+</html>
