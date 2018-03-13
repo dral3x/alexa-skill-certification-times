@@ -1,14 +1,17 @@
+const fixtures  = require("../fixtures/fixtures");
 const Importer  = require("./importer");
 
 describe("Importer", () => {
 
-    const config = { importer: { table: "t" }, twitter: {} };
+    const config = fixtures.createConfig({ 
+        importer: { table: "t" }, twitter: {}
+    });
 
     describe("importData", () => {
 
-        xit("should work", (done) => {
+        it("should work", (done) => {
 
-            let importer = new Importer(this.config);
+            let importer = new Importer(config);
 
             importer.importData((error) => {
 

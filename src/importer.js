@@ -2,6 +2,7 @@ const Twitter   = require('twit');
 const AWS       = require('aws-sdk');
 
 const DateUtil  = require('./date_util');
+const Extractor = require('./extractor');
 
 class Importer {
 
@@ -14,6 +15,26 @@ class Importer {
 
     importData(callback) {
 
+        /*this._fetchDirectMessages(null, (err, messages) => {
+
+            if (err) {
+                console.log('Unable to fetch direct messages: '+err);
+                return callback(err);
+            }
+
+            this._processDirectMessages(messages, (err, dates) => {
+                
+                if (err) {
+                    console.log('Unable to process direct messages: '+err);
+                    return callback(err);
+                }
+
+                callback(null, dates);
+
+            });
+
+        });*/
+
         this._fetchLastData((err, lastTweet) => {
 
             if (err) {
@@ -21,7 +42,7 @@ class Importer {
                 return callback(err);
             }
 
-            this._fetchNewData(lastTweet != null ? lastTweet.id : null, (err, tweets) => {
+            this._fetchPublicTweets(lastTweet != null ? lastTweet.id : null, (err, tweets) => {
 
                 if (err) {
                     console.log('Unable to fetch new tweets: '+err);
@@ -45,6 +66,10 @@ class Importer {
         });
     }
 
+    /*
+    Handling Public Tweets
+    */
+
     _fetchLastData(callback) {
 
         // TODO
@@ -52,7 +77,7 @@ class Importer {
   
     }
 
-    _fetchNewData(last_id, callback) {
+    _fetchPublicTweets(last_id, callback) {
         
         var tw_client = new Twitter(this.twitter_config);
         var params = { 'q': this.hashtag };
@@ -109,6 +134,7 @@ class Importer {
             requests.push({
                 PutRequest: {
                     Item: {
+                        "type": { "S": "PUBLIC_TWEET" },
                         "date": { "S": date },
                         "timestamp": { "S": timestamp },
                         "id": { "S": id },
@@ -144,6 +170,104 @@ class Importer {
             }
         });
     }
+
+    /*
+    Handling Direct Messages
+    */
+
+    _fetchDirectMessages(last_cursor, callback) {
+        
+        var tw_client = new Twitter(this.twitter_config);
+        var params = {};
+        if (last_cursor) {
+            params["cursor"] = last_cursor;
+        }
+
+        tw_client.get('direct_messages/events/list', params, (err, data, response) => {
+    
+            if (err) {
+                console.log('[ERROR] status code:' + err.statusCode + ' message: ' +err.message);
+                return callback(err);
+            }
+
+            if (!response || response.statusCode != 200) {
+                console.log('[ERROR] invalid response:' + JSON.stringify(response));
+                return callback(err);
+            }
+
+            if (!data) {
+                console.log('[ERROR] invalid data');
+                return callback(err);
+            }
+
+            //console.log('Got events '+JSON.stringify(data));
+            if (data.next_cursor) {
+                console.log('Got next_cursor '+data.next_cursor);
+            }
+
+            callback(null, data.events);
+        
+        });
+    }
+
+    _processDirectMessages(messages, callback) {
+
+        console.log('processing '+messages.length+ ' messages');
+
+        var dates = new Set();
+        var requests = [];
+
+        for (var i = 0, len = messages.length; i < len; i++) {
+            var message = messages[i];
+    
+            let created_at = new Date(parseInt(message.created_timestamp, 10));
+            let text = message.message_create.message_data.text;
+            let user = message.message_create.sender_id;
+            let timestamp = DateUtil.formatDate(created_at, "YYYY-MM-DD HH:mm:ss", true);
+            let date = Extractor.extractDate(text) || DateUtil.formatDate(created_at, "YYYY-MM-DD", true);
+            
+            console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
+
+            requests.push({
+                PutRequest: {
+                    Item: {
+                        "type": { "S": "DIRECT_MESSAGE" },
+                        "date": { "S": date },
+                        "timestamp": { "S": timestamp },
+                        "user": { "S": user },
+                        "text": { "S": text }
+                    }
+                }
+            });
+
+            dates.add(date);
+        }
+
+        if (requests.length == 0) {
+            console.log("Nothing to import");
+            return callback(null, []);
+        }
+
+        // Create the DynamoDB service object
+        let tableRequests = {}
+        tableRequests[this.table] = requests;
+        
+        var params = {
+            RequestItems: tableRequests
+        };
+
+        this.db.batchWriteItem(params, function(err, data) {
+            if (err) {
+                console.log("Error", err);
+                callback(err);
+            } else {
+                console.log("Success", data);
+                callback(null, Array.from(dates));
+            }
+        });
+    }
+
+    
 }
 
 module.exports = Importer;
