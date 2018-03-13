@@ -14,21 +14,21 @@ class Importer {
 
     importData(callback) {
 
-        this.fetchLastData((err, lastTweet) => {
+        this._fetchLastData((err, lastTweet) => {
 
             if (err) {
                 console.log('Unable to fetch last tweet: '+err);
                 return callback(err);
             }
 
-            this.fetchNewData(lastTweet != null ? lastTweet.id : null, (err, tweets) => {
+            this._fetchNewData(lastTweet != null ? lastTweet.id : null, (err, tweets) => {
 
                 if (err) {
                     console.log('Unable to fetch new tweets: '+err);
                     return callback(err);
                 }
 
-                this.processData(tweets, (err, data) => {
+                this._processData(tweets, (err, data) => {
 
                     if (err) {
                         console.log('Unable to process tweets: '+err);
@@ -41,19 +41,18 @@ class Importer {
                 });
 
             });
-        
-        });
 
+        });
     }
 
-    fetchLastData(callback) {
+    _fetchLastData(callback) {
 
         // TODO
         callback(null, null);
   
     }
 
-    fetchNewData(last_id, callback) {
+    _fetchNewData(last_id, callback) {
         
         var tw_client = new Twitter(this.twitter_config);
         var params = { 'q': this.hashtag };
@@ -85,7 +84,7 @@ class Importer {
         });
     }
 
-    processData(statuses, callback) {
+    _processData(statuses, callback) {
 
         console.log('processing '+statuses.length+ ' tweets');
 
