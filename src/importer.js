@@ -49,7 +49,7 @@ class Importer {
                     return callback(err);
                 }
 
-                this._processData(tweets, (err, data) => {
+                this._processPublicTweets(tweets, (err, dates) => {
 
                     if (err) {
                         console.log('Unable to process tweets: '+err);
@@ -57,7 +57,7 @@ class Importer {
                     }
 
                     console.log("Success!");
-                    callback(null);
+                    callback(null, dates);
 
                 });
 
@@ -66,9 +66,7 @@ class Importer {
         });
     }
 
-    /*
-    Handling Public Tweets
-    */
+    /* Handling Public Tweets */
 
     _fetchLastData(callback) {
 
@@ -109,7 +107,7 @@ class Importer {
         });
     }
 
-    _processData(statuses, callback) {
+    _processPublicTweets(statuses, callback) {
 
         console.log('processing '+statuses.length+ ' tweets');
 
@@ -117,7 +115,7 @@ class Importer {
         //console.log('statuses: '+ JSON.stringify(statuses));
 
         var dates = new Set();
-        var requests = [];
+        var items = [];
 
         for (var i = 0, len = statuses.length; i < len; i++) {
             var status = statuses[i];
@@ -131,49 +129,35 @@ class Importer {
 
             console.log('[TWEET] id: '+ id + ' timestamp: '+ timestamp + ' text: '+ text);
 
-            requests.push({
-                PutRequest: {
-                    Item: {
-                        "type": { "S": "PUBLIC_TWEET" },
-                        "date": { "S": date },
-                        "timestamp": { "S": timestamp },
-                        "id": { "S": id },
-                        "user": { "S": user },
-                        "text": { "S": text }
-                    }
-                }
+            items.push({
+                "type": { "S": "PUBLIC_TWEET" },
+                "date": { "S": date },
+                "timestamp": { "S": timestamp },
+                "id": { "S": id },
+                "user": { "S": user },
+                "text": { "S": text }
             });
 
             dates.add(date);
         }
 
-        if (requests.length == 0) {
+        if (items.length == 0) {
             console.log("Nothing to import");
             return callback(null, []);
         }
 
-        // Create the DynamoDB service object
-        let tableRequests = {}
-        tableRequests[this.table] = requests;
-        
-        var params = {
-            RequestItems: tableRequests
-        };
+        // Write data to db
+        this._writeItems(items, (err) => {
 
-        this.db.batchWriteItem(params, function(err, data) {
             if (err) {
-                console.log("Error", err);
-                callback(err);
-            } else {
-                console.log("Success", data);
-                callback(null, Array.from(dates));
+                return callback(err);
             }
+
+            callback(null, Array.from(dates));
         });
     }
 
-    /*
-    Handling Direct Messages
-    */
+    /* Handling Direct Messages */
 
     _fetchDirectMessages(last_cursor, callback) {
         
@@ -201,12 +185,11 @@ class Importer {
             }
 
             //console.log('Got events '+JSON.stringify(data));
-            if (data.next_cursor) {
-                console.log('Got next_cursor '+data.next_cursor);
-            }
+            //if (data.next_cursor) {
+            //    console.log('Got next_cursor '+data.next_cursor);
+            //}
 
             callback(null, data.events);
-        
         });
     }
 
@@ -215,7 +198,7 @@ class Importer {
         console.log('processing '+messages.length+ ' messages');
 
         var dates = new Set();
-        var requests = [];
+        var items = [];
 
         for (var i = 0, len = messages.length; i < len; i++) {
             var message = messages[i];
@@ -228,45 +211,60 @@ class Importer {
             
             console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
 
-            requests.push({
-                PutRequest: {
-                    Item: {
-                        "type": { "S": "DIRECT_MESSAGE" },
-                        "date": { "S": date },
-                        "timestamp": { "S": timestamp },
-                        "user": { "S": user },
-                        "text": { "S": text }
-                    }
-                }
+            items.push({
+                "type": { "S": "DIRECT_MESSAGE" },
+                "date": { "S": date },
+                "timestamp": { "S": timestamp },
+                "user": { "S": user },
+                "text": { "S": text }
             });
 
             dates.add(date);
         }
 
-        if (requests.length == 0) {
+        if (items.length == 0) {
             console.log("Nothing to import");
             return callback(null, []);
         }
 
-        // Create the DynamoDB service object
+        // Write data to db
+        this._writeItems(items, (err) => {
+
+            if (err) {
+                return callback(err);
+            }
+
+            callback(null, Array.from(dates));
+        });
+    }
+
+    /* Common */
+
+    _writeItems(items, callback) {
+
+        var requests = [];
+        for (var i = 0, len = items.length; i < len; i++) {
+            requests.push({
+                PutRequest: { Item: items[i] }
+            })
+        }
+
         let tableRequests = {}
         tableRequests[this.table] = requests;
         
-        var params = {
-            RequestItems: tableRequests
-        };
+        var params = { RequestItems: tableRequests };
 
         this.db.batchWriteItem(params, function(err, data) {
+            
             if (err) {
                 console.log("Error", err);
                 callback(err);
             } else {
                 console.log("Success", data);
-                callback(null, Array.from(dates));
+                callback(null);
             }
         });
     }
-
     
 }
 

@@ -15,10 +15,10 @@ fixtures.dynamodb = {
 
         // default behavior: error
         var db = { 
-            batchWriteItem: (params, callback) => { callback("Mock error"); },
-            scan: (params, callback) => { callback("Mock error"); },
-            update: (params, callback) => { callback("Mock error"); },
-            put: (params, callback) => { callback("Mock error"); }, 
+            batchWriteItem: (params, callback) => { callback("DynamoDB batchWriteItem mock error"); },
+            scan: (params, callback) => { callback("DynamoDB scan mock error"); },
+            update: (params, callback) => { callback("DynamoDB update mock error"); },
+            put: (params, callback) => { callback("DynamoDB put mock error"); }, 
         };
 
         beforeEach(() => {
@@ -45,7 +45,7 @@ fixtures.twitter = {
         
         // default behavior: success
         var client = { 
-            get: (path, params, callback) => { callback("Mock error"); },
+            get: (path, params, callback) => { callback("Twitter get mock error"); },
         };
 
         beforeEach(() => {
