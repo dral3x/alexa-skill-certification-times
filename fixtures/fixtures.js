@@ -1,5 +1,6 @@
-const AWS           = require("aws-sdk");
-const conf          = require("../src/conf");
+const AWS       = require("aws-sdk");
+const Twitter   = require('twit');
+const conf      = require("../src/conf");
 
 const fixtures   = {};
 
@@ -12,7 +13,7 @@ fixtures.conf = {
 fixtures.dynamodb = {
     use: () => {
 
-        // default behavior: success
+        // default behavior: error
         var db = { 
             batchWriteItem: (params, callback) => { callback("Mock error"); },
             scan: (params, callback) => { callback("Mock error"); },
@@ -39,16 +40,32 @@ fixtures.dynamodb = {
     }
 };
 
-module.exports.use = function(fixture) {
-    if (fixtures[fixture] && fixtures[fixture].use) {
-        return fixtures[fixture].use();
+fixtures.twitter = {
+    use: () => {
+        
+        // default behavior: success
+        var client = { 
+            get: (path, params, callback) => { callback("Mock error"); },
+        };
+
+        beforeEach(() => {
+
+            spyOn(Twitter.prototype, "get").and.callFake((path, params, cb) => {
+                return client.get(path, params, cb);
+            });
+
+        });
+
+        afterEach(() => {
+
+        });
+
+        return client;
     }
 };
 
-module.exports.createConfig = function(obj) {
-    return { 
-        get: (key) => { 
-            return obj[key];
-        } 
+module.exports.use = function(fixture) {
+    if (fixtures[fixture] && fixtures[fixture].use) {
+        return fixtures[fixture].use();
     }
 };
