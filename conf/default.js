@@ -1,10 +1,10 @@
 module.exports = {
     
     "twitter": {
-        consumer_key:         '',
-        consumer_secret:      '',
-        access_token:         '',
-        access_token_secret:  ''
+        consumer_key: '',
+        consumer_secret: '',
+        access_token: '',
+        access_token_secret: ''
     },
 
     "aws": {
@@ -12,11 +12,18 @@ module.exports = {
     },
 
     "importer": {
-        table: ''
+        table: '',
+        topic: ''
     },
 
     "processor": {
-        table_source:   '',
-        table_daily:    ''
+        table_source: '',
+        table_daily: '',
+        topic: ''
+    },
+
+    "generator": {
+        table: '',
+        bucket: ''
     },
 }
