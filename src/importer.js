@@ -1,8 +1,9 @@
-const Twitter   = require('twit');
-const AWS       = require('aws-sdk');
+const Twitter = require('twit');
+const AWS = require('aws-sdk');
 
-const DateUtil  = require('./date_util');
+const DateUtil = require('./date_util');
 const Extractor = require('./extractor');
+const notifier = require('./notifier');
 
 class Importer {
 
@@ -11,6 +12,7 @@ class Importer {
         this.hashtag = '#skillcertificationtime';
         this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
         this.twitter_config = config.get("twitter");
+        this.topic = config.get("importer.topic");
     }
 
     importData(callback) {
@@ -57,7 +59,10 @@ class Importer {
                     }
 
                     console.log("Success!");
-                    callback(null, dates);
+
+                    notifier.publish(this.topic, { "dates": dates }, (err) => {
+                        callback(null, dates);
+                    });
 
                 });
 

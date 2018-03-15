@@ -6,6 +6,7 @@ describe("Importer", () => {
     const config = fixtures.use("conf");
     const twitter = fixtures.use("twitter");
     const dynamodb = fixtures.use("dynamodb");
+    const sns = fixtures.use("sns");
 
     it("should do nothing then no new tweets have been found", (done) => {
 

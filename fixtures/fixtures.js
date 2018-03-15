@@ -64,6 +64,30 @@ fixtures.twitter = {
     }
 };
 
+fixtures.sns = {
+    use: () => {
+        
+        // default behavior: success
+        var client = { 
+            publish: (params, callback) => { callback("SNS publish mock error"); },
+        };
+
+        beforeEach(() => {
+
+            spyOn(AWS, "SNS").and.callFake((path, params, cb) => {
+                return client;
+            });
+
+        });
+
+        afterEach(() => {
+
+        });
+
+        return client;
+    }
+};
+
 module.exports.use = function(fixture) {
     if (fixtures[fixture] && fixtures[fixture].use) {
         return fixtures[fixture].use();
