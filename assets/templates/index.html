@@ -75,13 +75,9 @@ body {
         data.addColumn('number', 'Adverage time');
 
         data.addRows([
-          [new Date('2018-03-01'),  8],
-          [new Date('2018-03-02'),  5],
-          [new Date('2018-03-03'),  4],
-          [new Date('2018-03-04'),  5],
-          [new Date('2018-03-05'),  3],
-          [new Date('2018-03-06'),  5],
-          [new Date('2018-03-07'),  6],
+          {{#last_30_days}}
+          [new Date('{{date}}'), {{value}}],
+          {{/last_30_days}}
         ]);
 
         var options = {
@@ -114,16 +110,14 @@ body {
         <div class="summary">
           <div class="title">The average time of the last 30 days</div>
 
-          <div class="huge accent">4 days 5 hours</div>
+          <div class="huge accent">{{ overall.average }} days</div>
+          
+          <div>based on {{ overall.count }} reports</div>
 
-          <div><b>-1 day</b> compared to the previous cycle</div>
+          <div><b>{{ overall.diff }} day</b> compared to the previous cycle</div>
         </div>
 
   			<div class="title">Trends graph for the last 30 days</div>
-
-  			{{#last_7_days}}
-    		<p>{{date}}: <b>{{count}}</b></p>
-    		{{/last_7_days}}
 
         <div id="chart"></div>
 
