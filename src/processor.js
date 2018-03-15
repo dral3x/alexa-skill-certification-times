@@ -8,20 +8,35 @@ class Processor {
     constructor(config, date) {
         this.table_source = config.get('processor.table_source');
         this.table_daily = config.get('processor.table_daily');
-        this.date = date != undefined ? date : DateUtil.formatDate(new Date(), "YYYY-MM-DD", true);
     }
 
-    generateStats(callback) {
+    generateStats(dates, callback) {
 
-        console.log("Reference date is "+this.date);
+        if (!dates || dates.length == 0) {
+            return callback(null, "All done!");
+        }
 
-        this._fetchDailyData(this.date, (err, values) => {
+        this._processDate(dates[0], (err) => {
 
             if (err) {
                 return callback(err);
             }
 
-            this._generateDailyStats(this.date, values, (err) => {
+            this.generateStats(dates.slice(1), callback);
+        })
+    }
+
+    _processDate(date, callback) {
+
+        console.log("Processing data for date "+date);
+
+        this._fetchDailyData(date, (err, values) => {
+
+            if (err) {
+                return callback(err);
+            }
+
+            this._generateDailyStats(date, values, (err) => {
 
                 if (err) {
                     return callback(err);
