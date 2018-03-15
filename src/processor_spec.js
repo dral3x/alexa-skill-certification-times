@@ -5,6 +5,7 @@ describe("Processor", () => {
 
     const config = fixtures.use("conf");
     const db = fixtures.use("dynamodb");
+    const sns = fixtures.use("sns");
     
     describe("generateStats", () => {
 

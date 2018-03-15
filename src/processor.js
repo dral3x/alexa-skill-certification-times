@@ -3,17 +3,42 @@ const AWS       = require('aws-sdk');
 const DateUtil  = require('./date_util');
 const Extractor = require('./extractor');
 
+const notifier = require('./notifier');
+
 class Processor {
 
-    constructor(config, date) {
+    constructor(config) {
         this.table_source = config.get('processor.table_source');
         this.table_daily = config.get('processor.table_daily');
+        this.topic = config.get("processor.topic");
     }
 
     generateStats(dates, callback) {
 
         if (!dates || dates.length == 0) {
-            return callback(null, "All done!");
+            // Return without notify topic
+            return callback(null, "Nothing to process");
+        }
+
+        this._processDates(dates, (err) => {
+
+            // Handle failure
+            if (err) {
+                return callback(err);
+            }
+
+            // Handle success
+            notifier.publish(this.topic, { "dates": dates }, (err) => {
+                callback(null, "Processed "+dates.length+" dates");
+            });
+
+        })
+    }
+
+    _processDates(dates, callback) {
+
+        if (dates.length == 0) {
+            return callback(null);
         }
 
         this._processDate(dates[0], (err) => {
@@ -22,8 +47,9 @@ class Processor {
                 return callback(err);
             }
 
-            this.generateStats(dates.slice(1), callback);
+            this._processDates(dates.slice(1), callback);
         })
+
     }
 
     _processDate(date, callback) {
