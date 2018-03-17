@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             "region":               secrets.aws_region,
             "importer_arn":         secrets.importer_arn,
             "processor_arn":        secrets.processor_arn,
-            "generator_arn":        secrets.generator_arn,
+            "site_generator_arn":   secrets.site_generator_arn,
             "twitter_poster_arn":   secrets.twitter_poster_arn,
             "bucket":               secrets.bucket
        },
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                 package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
             },
             runGenerator: {
-                arn: conf[env].generator_arn,
+                arn: conf[env].site_generator_arn,
                 package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
             },
             runTwitterPoster: {
