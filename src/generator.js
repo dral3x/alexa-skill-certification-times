@@ -1,5 +1,7 @@
 const AWS       = require('aws-sdk');
 const Mustache  = require('mustache');
+const moment    = require('moment');
+
 const DateUtil  = require('./date_util');
 const Data      = require('./template_data');
 
@@ -66,7 +68,7 @@ class Generator {
             // Add all results to data
 
             data.Items.forEach(function(item) {
-                dataModel.addEntry(item.date['S'], item.avg['N'], item.count['N']);
+                dataModel.addEntry(item.date['S'], parseFloat(item.avg['N']), parseInt(item.count['N']));
             });
 
             // continue scanning when LastEvaluatedKey is defined
@@ -101,12 +103,19 @@ class Generator {
 
             // Inject data into template
             var template = file.Body.toString();
-            console.log("TEMPLATE: "+template);
-            var rendered = this._injectDataIntoTemplate(template, data.export());
-            console.log("RENDERED: "+rendered);
+            var metrics = data.export()
+            console.log("METRICS: "+JSON.stringify(metrics, null, 2));
+            var rendered = this._injectDataIntoTemplate(template, metrics);
+            //console.log("RENDERED: "+rendered);
 
             // Write final file to S3
-            let putParams = { Bucket: this.bucket, Key: "public/index.html", Body: rendered };
+            let putParams = { 
+                Bucket: this.bucket, 
+                Key: "public/index.html", 
+                ContentType: 'text/html',
+                Expires: Math.floor(new Date().getTime()/1000) + 60*60,
+                Body: rendered
+            };
             s3.putObject(putParams, function(err, pdata) {
 
                 if (err) {
@@ -114,7 +123,7 @@ class Generator {
                     return callback(err);
                 }
 
-                console.log("Successfully uploaded data to S3: "+pdata);
+                console.log("Successfully uploaded file to S3: "+pdata);
                 callback(null, "YEAH");
 
             });
@@ -124,9 +133,7 @@ class Generator {
 
     _injectDataIntoTemplate(template, data) {
 
-        var rendered = Mustache.render(template, data);
-
-        return rendered;
+        return Mustache.render(template, data);
     }
 }
 

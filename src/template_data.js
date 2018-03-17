@@ -17,6 +17,9 @@ class TemplateData {
 
     addEntry(date, average, count) {
         
+        // DEBUG
+        console.log("adding date: "+date+" avg: "+average+" count: "+count);
+        
         if (this.pivot_date < date) {
             this.recent_items.push({ 
                 "date": date, "value": average, "count": count 
@@ -39,17 +42,34 @@ class TemplateData {
 
     export() {
 
-        let now = moment().format("MMM D, YYYY \at HH:mm:ss UTC", true);
+        this._sortRecentItems();
+
+        let now = moment().format("MMM D, YYYY [at] HH:mm:ss [UTC]", true);
+        let average = this.recent_overall_total > 0 ? Math.round(this.recent_overall_average/this.recent_overall_total) : 0;
+        let diff = this.recent_overall_total > 0 && this.old_overall_total > 0 ? Math.round(this.recent_overall_average/this.recent_overall_total-this.old_overall_average/this.old_overall_total) : 0;
 
         return {
             "last_30_days": this.recent_items,
             "overall": { 
-                "average": this.recent_overall_average/this.recent_overall_total, 
+                "average": average, 
                 "count": this.recent_overall_total,
-                "diff": this.recent_overall_average/this.recent_overall_total-this.old_overall_average/this.old_overall_total
+                "diff": diff
             },
             "now": now
         }
+    }
+
+    _sortRecentItems() {
+
+        function compare(a, b) {
+            if (a.date < b.date)
+                return -1;
+            if (a.date > b.date)
+                return 1;
+            return 0;
+        }
+
+        this.recent_items.sort(compare);
     }
 
 }

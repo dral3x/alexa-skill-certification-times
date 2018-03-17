@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Testing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Find out the average certification times for Alexa Skills" />
+    <meta name="google-site-verification" content="nT4zsLKuyHDeCnbxO6rFhENd1bP99e9shOzmvPcumWs" />
+    <title>Average Alexa Skill Certification Times</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <style type="text/css">
 
@@ -11,12 +14,84 @@ body {
   font-size: 21px;
 }
 
-.header {
-	background-color: black;
+/* Layout */
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  background-color: black;
   color: white;
   font-weight: normal;
   text-align: center;
 }
+
+.header-item-image {
+  display: flex;
+  flex: initial;
+  width: 200;
+}
+
+.header-item-text {
+  display: flex;
+  flex: 1;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.main-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contribute-container {
+  display: flex;
+  flex-direction: row;
+
+  background-color: rgba(90, 153, 255, 0.1);
+  color: black;
+}
+
+.contribute-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #F4F4F4;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  font-size: 14px;
+}
+
+.footer-item {
+  display: flex;
+  flex: 1;
+}
+
+/* Styles */
 
 .huge {
   font-size: 50px;
@@ -37,22 +112,18 @@ body {
   color: #5A99FF;
 }
 
-.f_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.faq-title {
+  font-size: 36px;
+  font-weight: bold;
 }
 
-.f_item {
-
+.faq-question {
+  font-size: 26px;
+  font-weight: bold;
 }
 
-.faq {
-
-}
-
-.footer {
-
+.disclaimer {
+  color: #BA3030;
 }
 
     </style>
@@ -72,12 +143,16 @@ body {
 
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Date');
-        data.addColumn('number', 'Adverage time');
+        data.addColumn('number', 'Average time');
 
         data.addRows([
           {{#last_30_days}}
           [new Date('{{date}}'), {{value}}],
           {{/last_30_days}}
+          // [new Date('2018-03-01'), 15],
+          // [new Date('2018-03-02'), 5],
+          // [new Date('2018-03-03'), 9],
+          // [new Date('2018-03-04'), 4],
         ]);
 
         var options = {
@@ -87,7 +162,6 @@ body {
           legend: {
             position: "none"
           },
-          width: 500,
           height: 300
         };
 
@@ -98,48 +172,75 @@ body {
 
   </head>
   <body>
-  		<div class="header f_container">
-  			<div class="image f_item">
+  		<div class="header-container">
+        <div class="header-item-text huge">
+          Average <span class="accent">Alexa Skill</span> Certification Times
+        </div>
+        <div class="header-item-image">
           <img src="alexa-devices.png" />
         </div>
-        <div class="huge">Average <span class="accent">Alexa Skill</span> Certification Times</div>
   		</div>
 
 
-  		<div class="container">
-        <div class="summary">
+  		<div class="main-container">
+        <div class="main-item summary">
           <div class="title">The average time of the last 30 days</div>
-
-          <div class="huge accent">{{ overall.average }} days</div>
-          
-          <div>based on {{ overall.count }} reports</div>
-
-          <div><b>{{ overall.diff }} day</b> compared to the previous cycle</div>
+          <div class="huge accent">{{overall.average}} days</div>
+          <div><b>{{overall.diff}} day</b> compared to the previous cycle</div>
+          <div>based on {{overall.count}} reports</div>
         </div>
 
-  			<div class="title">Trends graph for the last 30 days</div>
+        <div class="main-item">
+  			  <div class="title">Trends graph for the last 30 days</div>
+          <div id="chart"></div>
+        </div>
+  		</div>
 
-        <div id="chart"></div>
+      
+      <div class="contribute-container">
+        <div class="contribute-item">
+          <p>This site is only made possible by people like you contributing review durations.</p>
+          <p class="accent">Please contribute your latest review.</p>
+        </div>
+        <div class="contribute-item">
+          <p>CTA</p>
+        </div>
+      </div>
+
+
+      <div class="faq-container">
+  			<div class="faq-item">
+          <div class="faq-title">FAQ</p>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Q 1?</div>
+          <div class="faq-answer">A 1</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Q 2?</div>
+          <div class="faq-answer">A 2</div>
+        </div>
 
   		</div>
-  		<div class="faq">
-  			<p>FAQ</p>
-  		</div>
-  		<div class="footer">
-  			<div class="disclaimer">
+
+
+  		<div class="footer-container">
+  			<div class="footer-item disclaimer">
           DISCLAIMER: This website is not associated with the Amazon Inc. in any way and it is not an official version.
           <br />
           Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
           <br />
           Twitter and Tweet are trademarks of Twitter Inc.
         </div>
-        
-        <div>
-          Created by Alessandro Calzavara, with the precious help of <a href="https://twitter.com/brigitadaisy" target="_blank">Brigita</a> and <a href="https://twitter.com/emanuele_r" target="_blank">Emanuele</a>.
+
+        <div class="footer-item">
+          Created by <a href="https://twitter.com/dral3x" target="_blank">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy" target="_blank">Brigita</a> and <a href="https://twitter.com/emanuele_r" target="_blank">Emanuele</a>.
         </div>
 
-        <div>
-          This website is updated every hour. Last update was {{ now }}
+        <div class="footer-item">
+          This website is updated every hour. Last update was {{now}}
         </div>
   		</div>
   </body>
