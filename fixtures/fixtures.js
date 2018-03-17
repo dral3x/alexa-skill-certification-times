@@ -47,12 +47,16 @@ fixtures.twitter = {
         // default behavior: success
         var client = { 
             get: (path, params, callback) => { callback("Twitter get mock error"); },
+            post: (path, params, callback) => { callback("Twitter post mock error"); },
         };
 
         beforeEach(() => {
 
             spyOn(Twitter.prototype, "get").and.callFake((path, params, cb) => {
                 return client.get(path, params, cb);
+            });
+            spyOn(Twitter.prototype, "post").and.callFake((path, params, cb) => {
+                return client.post(path, params, cb);
             });
 
         });
