@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const Generator = require('./src/generator');
+const Generator = require('./src/exporters/generator');
 
 const config = require('./src/conf');
 

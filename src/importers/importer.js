@@ -1,9 +1,9 @@
 const Twitter = require('twit');
 const AWS = require('aws-sdk');
 
-const DateUtil = require('./date_util');
-const Extractor = require('./extractor');
-const notifier = require('./notifier');
+const DateUtil = require('../date_util');
+const Extractor = require('../extractor');
+const notifier = require('../notifier');
 
 class Importer {
 

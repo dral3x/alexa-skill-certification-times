@@ -1,4 +1,4 @@
-const fixtures  = require("../fixtures/fixtures");
+const fixtures  = require("../../fixtures/fixtures");
 const Processor = require("./processor");
 
 describe("Processor", () => {

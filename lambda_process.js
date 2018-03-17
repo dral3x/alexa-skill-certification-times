@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const Processor = require('./src/processor');
+const Processor = require('./src/processor/processor');
 
 const config = require('./src/conf');
 

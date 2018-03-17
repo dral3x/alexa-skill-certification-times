@@ -1,4 +1,4 @@
-const fixtures  = require("../fixtures/fixtures");
+const fixtures  = require("../../fixtures/fixtures");
 const Importer  = require("./importer");
 
 describe("Importer", () => {

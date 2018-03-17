@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const Importer = require('./src/importer');
+const Importer = require('./src/importers/importer');
 
 const config = require('./src/conf');
 

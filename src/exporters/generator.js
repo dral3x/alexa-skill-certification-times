@@ -2,7 +2,7 @@ const AWS       = require('aws-sdk');
 const Mustache  = require('mustache');
 const moment    = require('moment');
 
-const DateUtil  = require('./date_util');
+const DateUtil  = require('../date_util');
 const Data      = require('./template_data');
 
 class Generator {
