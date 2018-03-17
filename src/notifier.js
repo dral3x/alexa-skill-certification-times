@@ -6,7 +6,7 @@ module.exports = {
 
         var sns = new AWS.SNS();
         var params = {
-            Message: message, 
+            Message: JSON.stringify(message, null, 2), 
             TopicArn: topic
         };
         sns.publish(params, callback);

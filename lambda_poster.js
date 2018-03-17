@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const WebsiteGenerator = require('./src/exporters/website_generator');
+const TwitterPoster = require('./src/exporters/twitter_poster');
 
 const config = require('./src/conf');
 
@@ -9,10 +9,10 @@ exports.handler = (event, context, callback) => {
     AWS.config.update({region: config.get("aws.region")});
 
     // Configure Generator
-    let generator = new WebsiteGenerator(config);
+    let exporter = new TwitterPoster(config);
 
     // Execute
-    generator.generateSite((err) => {
+    exporter.postYesterdayMetrics((err) => {
 
         if (err) {
             callback(err);

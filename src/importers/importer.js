@@ -8,11 +8,12 @@ const notifier = require('../notifier');
 class Importer {
 
     constructor(config) {
-        this.table = config.get('importer.table');
+        this.table = config.get('dynamodb.table_datapoints');
+        this.topic = config.get("sns.topic_request_process");
+        this.twitter_config = config.get("twitter");
+
         this.hashtag = '#skillcertificationtime';
         this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
-        this.twitter_config = config.get("twitter");
-        this.topic = config.get("importer.topic");
     }
 
     importData(callback) {
@@ -61,6 +62,11 @@ class Importer {
                     console.log("Success!");
 
                     notifier.publish(this.topic, { "dates": dates }, (err) => {
+
+                        if (err) {
+                            console.error("Unable to publish on topic "+this.topic+": "+err);
+                        }
+
                         callback(null, dates);
                     });
 

@@ -1,5 +1,5 @@
 const fixtures	= require("../../fixtures/fixtures");
-const Generator  = require("./generator");
+const WebsiteGenerator  = require("./website_generator");
 
 describe("Generator", () => {
 
@@ -12,7 +12,7 @@ describe("Generator", () => {
 
         xit("should work", (done) => {
 
-        	let generator = new Generator(this.config);
+        	let generator = new WebsiteGenerator(this.config);
 
             generator.generateSite((error) => {
 

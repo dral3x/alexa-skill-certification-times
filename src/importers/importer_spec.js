@@ -137,7 +137,7 @@ describe("Importer", () => {
             expect(dynamodb.batchWriteItem).toHaveBeenCalled();
 
             let params = dynamodb.batchWriteItem.calls.mostRecent().args[0];
-            expect(params.RequestItems[config.get("importer.table")].length).toEqual(1);
+            expect(params.RequestItems[config.get("dynamodb.table_datapoints")].length).toEqual(1);
 
             done();
 

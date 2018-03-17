@@ -5,11 +5,11 @@ const moment    = require('moment');
 const DateUtil  = require('../date_util');
 const Data      = require('./template_data');
 
-class Generator {
+class WebsiteGenerator {
 
     constructor(config) {
-        this.table = config.get('generator.table');
-        this.bucket = config.get('generator.bucket');
+        this.table = config.get('dynamodb.table_daily');
+        this.bucket = config.get('s3.bucket_website');
     }
 
     generateSite(callback) {
@@ -137,4 +137,4 @@ class Generator {
     }
 }
 
-module.exports = Generator;
+module.exports = WebsiteGenerator;

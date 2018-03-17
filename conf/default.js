@@ -11,19 +11,18 @@ module.exports = {
         region: ''
     },
 
-    "importer": {
-        table: '',
-        topic: ''
+    "dynamodb": {
+        table_datapoints:   '',
+        table_daily:        '',
     },
 
-    "processor": {
-        table_source: '',
-        table_daily: '',
-        topic: ''
+    "s3": {
+        bucket_website:     ''
     },
 
-    "generator": {
-        table: '',
-        bucket: ''
+    "sns": {
+        topic_request_process:          '',
+        topic_request_generate_website: ''
     },
+
 }

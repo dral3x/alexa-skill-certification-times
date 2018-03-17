@@ -19,6 +19,7 @@ fixtures.dynamodb = {
             scan: (params, callback) => { callback("DynamoDB scan mock error"); },
             update: (params, callback) => { callback("DynamoDB update mock error"); },
             put: (params, callback) => { callback("DynamoDB put mock error"); }, 
+            get: (params, callback) => { callback("DynamoDB get mock error"); }, 
         };
 
         beforeEach(() => {

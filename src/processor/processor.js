@@ -8,9 +8,9 @@ const notifier = require('../notifier');
 class Processor {
 
     constructor(config) {
-        this.table_source = config.get('processor.table_source');
-        this.table_daily = config.get('processor.table_daily');
-        this.topic = config.get("processor.topic");
+        this.table_source = config.get('dynamodb.table_datapoints');
+        this.table_daily = config.get('dynamodb.table_daily');
+        this.topic = config.get("sns.topic_request_generate_website");
     }
 
     generateStats(dates, callback) {
@@ -29,6 +29,11 @@ class Processor {
 
             // Handle success
             notifier.publish(this.topic, { "dates": dates }, (err) => {
+                
+                if (err) {
+                    console.error("Unable to publish on topic "+this.topic+": "+err);
+                }
+
                 callback(null, "Processed "+dates.length+" dates");
             });
 

@@ -7,12 +7,13 @@ module.exports = function(grunt) {
     var env = grunt.option("env") || "prod";
     var conf = {
        "prod": {
-            "profile":          secrets.credentials_profile,
-            "region":           secrets.aws_region,
-            "importer_arn":     secrets.importer_arn,
-            "processor_arn":    secrets.processor_arn,
-            "generator_arn":    secrets.generator_arn,
-            "bucket":           secrets.bucket
+            "profile":              secrets.credentials_profile,
+            "region":               secrets.aws_region,
+            "importer_arn":         secrets.importer_arn,
+            "processor_arn":        secrets.processor_arn,
+            "generator_arn":        secrets.generator_arn,
+            "twitter_poster_arn":   secrets.twitter_poster_arn,
+            "bucket":               secrets.bucket
        },
        "test": {
             "importer_arn":     "NONE",
@@ -77,6 +78,10 @@ module.exports = function(grunt) {
             runGenerator: {
                 arn: conf[env].generator_arn,
                 package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
+            },
+            runTwitterPoster: {
+                arn: conf[env].twitter_poster_arn,
+                package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
             }
         },
 
@@ -139,6 +144,17 @@ module.exports = function(grunt) {
             "lambda_package",
             "clean:env_based_conf_file",
             "lambda_deploy:runGenerator"
+        ]
+    );
+
+    grunt.registerTask(
+        "deploy_poster",
+        "Package and deploy the Lambda to AWS.",
+        [
+            "copy:env_based_conf_file",
+            "lambda_package",
+            "clean:env_based_conf_file",
+            "lambda_deploy:runTwitterPoster"
         ]
     );
 
