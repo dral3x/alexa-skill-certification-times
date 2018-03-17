@@ -44,7 +44,7 @@ fixtures.dynamodb = {
 fixtures.twitter = {
     use: () => {
         
-        // default behavior: success
+        // default behavior: error
         var client = { 
             get: (path, params, callback) => { callback("Twitter get mock error"); },
             post: (path, params, callback) => { callback("Twitter post mock error"); },
@@ -74,7 +74,7 @@ fixtures.sns = {
         
         // default behavior: success
         var client = { 
-            publish: (params, callback) => { callback("SNS publish mock error"); },
+            publish: (params, callback) => { callback(null); },
         };
 
         beforeEach(() => {

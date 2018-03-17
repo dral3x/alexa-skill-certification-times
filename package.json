@@ -9,6 +9,7 @@
   "author": "Alessandro Calzavara",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.6.0",
     "aws-sdk": "^2.207.0",
     "moment": "^2.21.0",
     "mustache": "^2.3.0",

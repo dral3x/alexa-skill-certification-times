@@ -12,6 +12,16 @@ class Formatter {
         return parsed.format("YYYY-MM-DD", true);
     }
 
+    formatDateTime(date) {
+        
+        let parsed = moment(date);
+        if (!parsed.isValid()) {
+            return null;
+        }
+
+        return parsed.format("YYYY-MM-DD HH:mm:ss", true);
+    }
+
     formatHumanDate(date) {
 
         let parsed = moment(date);

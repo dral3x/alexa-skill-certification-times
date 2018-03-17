@@ -1,8 +1,9 @@
 const Twitter = require('twit');
 const AWS = require('aws-sdk');
+const async = require("async");
 
-const DateUtil = require('../date_util');
 const Extractor = require('../extractor');
+const formatter = require('../formatter');
 const notifier = require('../notifier');
 
 class Importer {
@@ -13,73 +14,96 @@ class Importer {
         this.twitter_config = config.get("twitter");
 
         this.hashtag = '#skillcertificationtime';
-        this.db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
     }
 
     importData(callback) {
 
-        /*this._fetchDirectMessages(null, (err, messages) => {
+        console.log("[ALL] Importing data");
+
+        let importers = [ 
+            this._importPublicTweets.bind(this),
+            this._importDirectMessages.bind(this)
+        ];
+
+        async.parallel(importers, (err, results) => {
 
             if (err) {
-                console.log('Unable to fetch direct messages: '+err);
+                console.log("[ALL] Unable to import data: "+err);
                 return callback(err);
             }
 
-            this._processDirectMessages(messages, (err, dates) => {
-                
+            console.log("[ALL] Import completed");
+            console.log("[ALL] dates? "+results);
+
+            let set = new Set();
+            for (let result of results) {
+                for (let date of result) {
+                    set.add(date);
+                }
+            }
+
+            let dates = Array.from(set);
+            notifier.publish(this.topic, { "dates": dates }, (err) => {
+
+                // Ignore any error. Just log it
                 if (err) {
-                    console.log('Unable to process direct messages: '+err);
-                    return callback(err);
+                    console.error("[ALL] Unable to publish on topic "+this.topic+": "+err);
                 }
 
                 callback(null, dates);
-
-            });
-
-        });*/
-
-        this._fetchLastData((err, lastTweet) => {
-
-            if (err) {
-                console.log('Unable to fetch last tweet: '+err);
-                return callback(err);
-            }
-
-            this._fetchPublicTweets(lastTweet != null ? lastTweet.id : null, (err, tweets) => {
-
-                if (err) {
-                    console.log('Unable to fetch new tweets: '+err);
-                    return callback(err);
-                }
-
-                this._processPublicTweets(tweets, (err, dates) => {
-
-                    if (err) {
-                        console.log('Unable to process tweets: '+err);
-                        return callback(err);
-                    }
-
-                    console.log("Success!");
-
-                    notifier.publish(this.topic, { "dates": dates }, (err) => {
-
-                        if (err) {
-                            console.error("Unable to publish on topic "+this.topic+": "+err);
-                        }
-
-                        callback(null, dates);
-                    });
-
-                });
-
             });
 
         });
     }
 
+    _importPublicTweets(callback) {
+
+        console.log("[TWEETS] Importing data");
+        
+        async.waterfall([
+            (cb) => cb(null, null),
+            this._fetchLastData.bind(this),
+            this._fetchPublicTweets.bind(this),
+            this._processPublicTweets.bind(this)
+        ], function (err, result) {
+        
+            if (err) {
+                console.error('[TWEETS] Unable to process tweets: '+err);
+                return callback(err);
+            }
+
+            console.log("[TWEETS] Import completed with "+result);
+            callback(null, result);
+
+        });
+
+    }
+
+    _importDirectMessages(callback) {
+
+        console.log("[DM] Importing data");
+        
+        async.waterfall([
+            (cb) => cb(null, null),
+            this._fetchDirectMessages.bind(this),
+            this._processDirectMessages.bind(this)
+        ], function (err, result) {
+        
+            if (err) {
+                console.error('[DM] Unable to process direct messages: '+err);
+                return callback(err);
+            }
+
+            console.log('[DM] Import completed');
+            callback(null, result);
+
+        });
+
+    }
+
     /* Handling Public Tweets */
 
-    _fetchLastData(callback) {
+    _fetchLastData(anything, callback) {
 
         // TODO
         callback(null, null);
@@ -94,20 +118,20 @@ class Importer {
             params["since_id"] = last_id;
         }
 
-        tw_client.get('search/tweets', params, (err, data, response) => {
+        tw_client.get('search/tweets', params, function (err, data, response) {
     
             if (err) {
-                console.log('[ERROR] status code:' + err.statusCode + ' message: ' +err.message);
+                console.error('twitter status code:' + err.statusCode + ' message: ' +err.message, err);
                 return callback(err);
             }
 
             if (!response || response.statusCode != 200) {
-                console.log('[ERROR] invalid response:' + JSON.stringify(response));
+                console.error('twitter invalid response:' + JSON.stringify(response));
                 return callback(err);
             }
 
             if (!data) {
-                console.log('[ERROR] invalid data');
+                console.error('twitter invalid data');
                 return callback(err);
             }
 
@@ -132,9 +156,9 @@ class Importer {
             var status = statuses[i];
     
             let id = status.id_str;
-            let created_at = new Date(status.created_at); //TODO use DateUtil?
-            let timestamp = DateUtil.formatDate(created_at, "YYYY-MM-DD HH:mm:ss", true);
-            let date = DateUtil.formatDate(created_at, "YYYY-MM-DD", true);
+            let created_at = new Date(status.created_at);
+            let timestamp = formatter.formatDateTime(created_at);
+            let date = formatter.formatDate(created_at);
             let text = status.text;
             let user = status.user.screen_name;
 
@@ -158,7 +182,7 @@ class Importer {
         }
 
         // Write data to db
-        this._writeItems(items, (err) => {
+        this._writeItems(items, function (err) {
 
             if (err) {
                 return callback(err);
@@ -178,20 +202,20 @@ class Importer {
             params["cursor"] = last_cursor;
         }
 
-        tw_client.get('direct_messages/events/list', params, (err, data, response) => {
+        tw_client.get('direct_messages/events/list', params, function (err, data, response) {
     
             if (err) {
-                console.log('[ERROR] status code:' + err.statusCode + ' message: ' +err.message);
+                console.error('twitter status code:' + err.statusCode + ' message: ' +err.message, err);
                 return callback(err);
             }
 
             if (!response || response.statusCode != 200) {
-                console.log('[ERROR] invalid response:' + JSON.stringify(response));
+                console.error('twitter invalid response:' + JSON.stringify(response));
                 return callback(err);
             }
 
             if (!data) {
-                console.log('[ERROR] invalid data');
+                console.error('twitter invalid data');
                 return callback(err);
             }
 
@@ -217,8 +241,8 @@ class Importer {
             let created_at = new Date(parseInt(message.created_timestamp, 10));
             let text = message.message_create.message_data.text;
             let user = message.message_create.sender_id;
-            let timestamp = DateUtil.formatDate(created_at, "YYYY-MM-DD HH:mm:ss", true);
-            let date = Extractor.extractDate(text) || DateUtil.formatDate(created_at, "YYYY-MM-DD", true);
+            let timestamp = formatter.formatDateTime(created_at);
+            let date = Extractor.extractDate(text) || formatter.formatDate(created_at);
             
             console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
 
@@ -239,7 +263,7 @@ class Importer {
         }
 
         // Write data to db
-        this._writeItems(items, (err) => {
+        this._writeItems(items, function (err) {
 
             if (err) {
                 return callback(err);
@@ -265,7 +289,8 @@ class Importer {
         
         var params = { RequestItems: tableRequests };
 
-        this.db.batchWriteItem(params, function(err, data) {
+        let db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
+        db.batchWriteItem(params, function(err, data) {
             
             if (err) {
                 console.log("Error", err);
@@ -274,6 +299,7 @@ class Importer {
                 console.log("Success", data);
                 callback(null);
             }
+
         });
     }
     

@@ -27,7 +27,7 @@ module.exports = {
         match = string.match(pattern);
         if (match != null) {
             let year = moment().year();
-            let date = moment([year, 0, match[1]]).month(match[2]);
+            let date = moment(match[0], "D MMM").year(year);
             return date.isValid() ? date.format("YYYY-MM-DD") : null;
         }
 

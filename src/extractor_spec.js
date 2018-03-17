@@ -44,6 +44,8 @@ describe("Extractor", () => {
         it("should work", () => {
 
             expect(Extractor.extractDate("0 days")).toBe(null);
+            expect(Extractor.extractDate("bla 5 days bla")).toBe(null);
+
             expect(Extractor.extractDate("2018-03-01")).toBe("2018-03-01");
             expect(Extractor.extractDate("bla 2018-03-01 bla")).toBe("2018-03-01");
 

@@ -1,8 +1,5 @@
-const AWS       = require('aws-sdk');
-
-const DateUtil  = require('../date_util');
+const AWS = require('aws-sdk');
 const Extractor = require('../extractor');
-
 const notifier = require('../notifier');
 
 class Processor {
