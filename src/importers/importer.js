@@ -10,6 +10,7 @@ class Importer {
 
     constructor(config) {
         this.table = config.get('dynamodb.table_datapoints');
+        this.table_state = config.get('dynamodb.table_state');
         this.topic = config.get("sns.topic_request_process");
         this.twitter_config = config.get("twitter");
 
@@ -62,7 +63,7 @@ class Importer {
         
         async.waterfall([
             (cb) => cb(null, null),
-            this._fetchLastData.bind(this),
+            this._fetchLastPublicTweetId.bind(this),
             this._fetchPublicTweets.bind(this),
             this._processPublicTweets.bind(this)
         ], function (err, result) {
@@ -103,11 +104,13 @@ class Importer {
 
     /* Handling Public Tweets */
 
-    _fetchLastData(anything, callback) {
+    _fetchLastPublicTweetId(anything, callback) {
 
-        // TODO
-        callback(null, null);
-  
+        this._readState("importer_twitter_public_tweets_last_id", (err, state) => {
+            
+            callback(null, state);
+            
+        });
     }
 
     _fetchPublicTweets(last_id, callback) {
@@ -182,13 +185,18 @@ class Importer {
         }
 
         // Write data to db
-        this._writeItems(items, function (err) {
+        this._writeItems(items, (err) => {
 
             if (err) {
                 return callback(err);
             }
 
-            callback(null, Array.from(dates));
+            this._writeState("importer_twitter_public_tweets_last_id", statuses[0].id_str, (err) => {
+
+                callback(null, Array.from(dates));
+
+            });
+            
         });
     }
 
@@ -198,9 +206,6 @@ class Importer {
         
         var tw_client = new Twitter(this.twitter_config);
         var params = {};
-        if (last_cursor) {
-            params["cursor"] = last_cursor;
-        }
 
         tw_client.get('direct_messages/events/list', params, function (err, data, response) {
     
@@ -280,7 +285,7 @@ class Importer {
         var requests = [];
         for (var i = 0, len = items.length; i < len; i++) {
             requests.push({
-                PutRequest: { Item: items[i] }
+                PutRequest: { Item: items[i] },
             })
         }
 
@@ -299,6 +304,61 @@ class Importer {
                 console.log("Success", data);
                 callback(null);
             }
+
+        });
+    }
+
+    _readState(key, callback) {
+
+        let db = new AWS.DynamoDB.DocumentClient();
+
+        var params = {
+            TableName: this.table_state,
+            Key: {
+                "property": key
+            }
+        };
+
+        db.get(params, function(err, data) {
+            
+            if (err) {
+                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                return callback(err);
+            }
+
+            if (data.Item) {
+                callback(null, data.Item.value);
+            } else {
+                callback(null, null);
+            }
+
+        });
+
+    }
+
+    _writeState(key, state, callback) {
+        
+        let db = new AWS.DynamoDB.DocumentClient();
+
+        var params = {
+            TableName: this.table_state,
+            Item: {
+                "property": key,
+                "value": state
+            }
+        };
+
+        db.put(params, function(err, data) {
+            
+            if (err) {
+                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                return callback(err);
+            }
+
+            // DEBUG
+            console.log("PutItem succeeded:", JSON.stringify(data, null, 2));
+
+            callback(null, data.Item);
 
         });
     }

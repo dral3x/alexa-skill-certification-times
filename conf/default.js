@@ -14,6 +14,7 @@ module.exports = {
     "dynamodb": {
         table_datapoints:   '',
         table_daily:        '',
+        table_state:        ''
     },
 
     "s3": {

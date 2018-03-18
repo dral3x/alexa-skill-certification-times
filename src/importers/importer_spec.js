@@ -20,6 +20,12 @@ describe("Importer", () => {
                     statusCode: 200
                 });
             });
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
             spyOn(dynamodb, "batchWriteItem");
 
             let importer = new Importer(config);
@@ -55,6 +61,12 @@ describe("Importer", () => {
                 });
             });
 
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
             spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
                 cb(null, "Ok!");
             });
@@ -68,6 +80,50 @@ describe("Importer", () => {
                 let params = twitter.get.calls.mostRecent().args;
                 expect(params[0]).toEqual("search/tweets");
                 expect(params[1]).toEqual({ q: "#skillcertificationtime" });
+
+                done();
+
+            });
+
+        });
+
+        it("should fetch new tweets since saved last id", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    statuses: [{
+                        "created_at": "Sun Mar 11 07:59:43 +0000 2018",
+                        "id_str": "972743858927828992",
+                        "text": "Blablabla tooks 5 days to be certified #skillcertifiationtime",
+                        "user": {
+                            "id_str": "942723802768773120",
+                            "screen_name": "Tom",
+                        }
+                    }]
+                }, {
+                    statusCode: 200
+                });
+            });
+
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { Item: { "property": "importer_twitter_public_tweets_last_id", "value": "1" } });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
+                cb(null, "Ok!");
+            });
+
+            let importer = new Importer(config);
+
+            importer._importPublicTweets((error, dates) => {
+
+                expect(twitter.get).toHaveBeenCalled();
+
+                let params = twitter.get.calls.mostRecent().args;
+                expect(params[0]).toEqual("search/tweets");
+                expect(params[1]).toEqual({ q: "#skillcertificationtime", since_id: "1" });
 
                 done();
 
@@ -93,6 +149,12 @@ describe("Importer", () => {
                 });
             });
 
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
             spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
                 cb(null, "Ok!");
             });
@@ -128,6 +190,12 @@ describe("Importer", () => {
                 });
             });
 
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
             spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
                 cb(null, "Ok!");
             });
@@ -140,6 +208,53 @@ describe("Importer", () => {
 
                 let params = dynamodb.batchWriteItem.calls.mostRecent().args[0];
                 expect(params.RequestItems[config.get("dynamodb.table_datapoints")].length).toEqual(1);
+
+                done();
+
+            });
+
+        });
+
+        it("should save most recent id as state", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    statuses: [{
+                        "created_at": "Sun Mar 11 07:59:43 +0000 2018",
+                        "id_str": "972743858927828992",
+                        "text": "Blablabla tooks 5 days to be certified #skillcertifiationtime",
+                        "user": {
+                            "id_str": "942723802768773120",
+                            "screen_name": "Tom",
+                        }
+                    }]
+                }, {
+                    statusCode: 200
+                });
+            });
+
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
+                cb(null, "Ok!");
+            });
+
+            let importer = new Importer(config);
+
+            importer._importPublicTweets((error, dates) => {
+
+                expect(dynamodb.batchWriteItem).toHaveBeenCalled();
+
+                let params = dynamodb.batchWriteItem.calls.mostRecent().args[0];
+                expect(params.RequestItems[config.get("dynamodb.table_datapoints")].length).toEqual(1);
+
+                let stateParams = dynamodb.put.calls.mostRecent().args[0];
+                expect(stateParams.Item.property).toBe("importer_twitter_public_tweets_last_id");
+                expect(stateParams.Item.value).toBe("972743858927828992");
 
                 done();
 
@@ -186,6 +301,12 @@ describe("Importer", () => {
                 cb(new Error());
             });
 
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
             spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
                 cb(null, "Ok!");
             });
