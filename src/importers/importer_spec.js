@@ -262,6 +262,46 @@ describe("Importer", () => {
 
         });
 
+        it("should ignore tweets from blacklisted users", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    statuses: [{
+                        "created_at": "Sun Mar 11 07:59:43 +0000 2018",
+                        "id_str": "972743858927828992",
+                        "text": "Blablabla tooks 5 days to be certified #skillcertifiationtime",
+                        "user": {
+                            "id_str": "942723802768773120",
+                            "screen_name": "skillcerttimes",
+                        }
+                    }]
+                }, {
+                    statusCode: 200
+                });
+            });
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem");
+
+            let importer = new Importer(config);
+
+            importer._importPublicTweets((error) => {
+
+                expect(error).toBe(null);
+
+                expect(dynamodb.batchWriteItem).not.toHaveBeenCalled();
+                expect(dynamodb.put).toHaveBeenCalled();
+
+                done();
+
+            });
+
+        });
+
     });
 
     describe("Import All Data", () => {

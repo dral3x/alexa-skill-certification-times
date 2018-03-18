@@ -15,6 +15,7 @@ class Importer {
         this.twitter_config = config.get("twitter");
 
         this.hashtag = '#skillcertificationtime';
+        this.users_blacklist = [ "skillcerttimes" ];
     }
 
     importData(callback) {
@@ -167,6 +168,11 @@ class Importer {
 
             console.log('[TWEET] id: '+ id + ' timestamp: '+ timestamp + ' text: '+ text);
 
+            if (this.users_blacklist.indexOf(user) >= 0) {
+                console.log('[TWEET] user '+ user + ' is blacklisted');
+                continue;
+            }
+
             items.push({
                 "type": { "S": "PUBLIC_TWEET" },
                 "date": { "S": date },
@@ -181,7 +187,17 @@ class Importer {
 
         if (items.length == 0) {
             console.log("Nothing to import");
-            return callback(null, []);
+
+            if (statuses.length == 0) {
+                callback(null, []);
+            } else {
+                this._writeState("importer_twitter_public_tweets_last_id", statuses[0].id_str, (err) => {
+
+                    callback(null, []);
+
+                });
+            }
+            return;
         }
 
         // Write data to db
