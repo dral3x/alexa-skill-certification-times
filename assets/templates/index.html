@@ -6,127 +6,8 @@
     <meta name="description" content="Find out the average certification times for Alexa Skills" />
     <meta name="google-site-verification" content="nT4zsLKuyHDeCnbxO6rFhENd1bP99e9shOzmvPcumWs" />
     <title>Average Alexa Skill Certification Times</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <style type="text/css">
-
-body {
-	font-family: "Source Sans Pro", sans-serif;
-  font-size: 21px;
-}
-
-/* Layout */
-
-.header-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-
-  background-color: black;
-  color: white;
-  font-weight: normal;
-  text-align: center;
-}
-
-.header-item-image {
-  display: flex;
-  flex: initial;
-  width: 200;
-}
-
-.header-item-text {
-  display: flex;
-  flex: 1;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.main-item {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.contribute-container {
-  display: flex;
-  flex-direction: row;
-
-  background-color: rgba(90, 153, 255, 0.1);
-  color: black;
-}
-
-.contribute-item {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.faq-container {
-  display: flex;
-  flex-direction: column;
-
-  background-color: #F4F4F4;
-}
-
-.faq-item {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  font-size: 14px;
-}
-
-.footer-item {
-  display: flex;
-  flex: 1;
-}
-
-/* Styles */
-
-.huge {
-  font-size: 50px;
-  font-weight: bold;
-}
-
-.title {
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.subtitle {
-  font-size: 24px;
-  font-weight: lighter;
-}
-
-.accent {
-  color: #5A99FF;
-}
-
-.faq-title {
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.faq-question {
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.disclaimer {
-  color: #BA3030;
-}
-
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
     <!-- Google Charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -146,13 +27,13 @@ body {
         data.addColumn('number', 'Average time');
 
         data.addRows([
-          {{#last_30_days}}
-          [new Date('{{date}}'), {{value}}],
-          {{/last_30_days}}
-          // [new Date('2018-03-01'), 15],
-          // [new Date('2018-03-02'), 5],
-          // [new Date('2018-03-03'), 9],
-          // [new Date('2018-03-04'), 4],
+          // {{#last_30_days}}
+          // [new Date('{{date}}'), {{value}}],
+          // {{/last_30_days}}
+          [new Date('2018-03-01'), 15],
+          [new Date('2018-03-02'), 5],
+          [new Date('2018-03-03'), 9],
+          [new Date('2018-03-04'), 4],
         ]);
 
         var options = {
@@ -172,6 +53,9 @@ body {
 
   </head>
   <body>
+
+      <!-- Header section -->
+
   		<div class="header-container">
         <div class="header-item-text huge">
           Average <span class="accent">Alexa Skill</span> Certification Times
@@ -181,6 +65,8 @@ body {
         </div>
   		</div>
 
+
+      <!-- Main section -->
 
   		<div class="main-container">
         <div class="main-item summary">
@@ -196,39 +82,90 @@ body {
         </div>
   		</div>
 
-      
+      <!-- Contribute section -->
+
       <div class="contribute-container">
-        <div class="contribute-item">
-          <p>This site is only made possible by people like you contributing review durations.</p>
-          <p class="accent">Please contribute your latest review.</p>
+        <div class="contribute-item-fill">
+          This site is only made possible by people like you contributing review durations.<br />
+          <div class="accent"><b>Please contribute your latest review.</b></div>
         </div>
-        <div class="contribute-item">
-          <p>CTA</p>
+        <div class="contribute-item-fixed">
+          <div class="button"><a href="contribute.html">CONTRIBUTE</a></div>
         </div>
       </div>
 
+      <!-- FAQ section -->
 
       <div class="faq-container">
-  			<div class="faq-item">
-          <div class="faq-title">FAQ</p>
+  			<div class="faq-item-first">
+          <div class="faq-title">FAQ</div>
         </div>
         
         <div class="faq-item">
-          <div class="faq-question">Q 1?</div>
-          <div class="faq-answer">A 1</div>
+          <div class="faq-question">What is this?</div>
+          <div class="faq-answer">This site tracks the average Alexa Skill certification times for any kind of skill, using data crowdsourced from Alexa developers.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">Q 2?</div>
-          <div class="faq-answer">A 2</div>
+          <div class="faq-question">Where does this data come from?</div>
+          <div class="faq-answer">
+            This is NOT official Amazon data. 
+            It is based only on data gathered from Twitter where people post their latest certification times using the <a href="https://twitter.com/hashtag/skillcertificationtime">#alexacertificationtime</a> hash tag. 
+            More details are available in the <a href="contribute.html">How to Contribute</a> page.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How do I contribute data?</div> 
+          <div class="faq-answer">
+            It's simple! Just post to Twitter a message with the <a href="https://twitter.com/hashtag/skillcertificationtime">#skillcertificationtime</a> hash tag and the number of days it tooks to your skill to be certified. If you want, you can also add your skill name and link.
+            Please do continue to post your times, this site is useless without constant data.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Who is collecting this data?</div>
+          <div class="faq-answer">
+            My name is <a href="https://twitter.com/dral3x"><b>Alessandro</b></a> and I created this site in the hope that it would provide some useful information to Alexa developers around the world.
+            Also, all the code for this project is opensource and available on <a href="https://github.com/dral3x/alexa-skill-certification-times">GitHub</a>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I be notified of the numbers automatically?</div>
+          <div class="faq-answer">Yes. The <a href="https://twitter.com/skillcerttimes">@skillcerttimes</a> account on Twitter will post once a day with the latest averages.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">How accurate is this data?</div>
+          <div class="faq-answer">
+            The averages on this site are based only on the data gathered from the community which are a very small subset of the total number of skills which go through certification each day. 
+            However in our experience it does give a reasonable indication of how certification times are changing over time.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How is the average calculated?</div>
+          <div class="faq-answer">
+            The average for each day on the graph is calculated using a simple average based on historic data (using 30 days of data). 
+            The current number of days average is simply the average of the same data points from that graph rounded to the nearest whole day.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">This site reminds me of <b>appreviewtimes</b></div>
+          <div class="faq-answer">
+            It does because it IS based on <a href="http://appreviewtimes.com"><b>appreviewtimes.com</b></a>. 
+            A big Thanks goes to <a href="https://twitter.com/daveverwer">Dave Verwer</a> and his Shiny Development team for the original idea and for promoting this one 👏</div>
         </div>
 
   		</div>
 
+      <!-- Footer section -->
 
   		<div class="footer-container">
   			<div class="footer-item disclaimer">
-          DISCLAIMER: This website is not associated with the Amazon Inc. in any way and it is not an official version.
+          <b>DISCLAIMER:</b> This website is not associated with the Amazon Inc. in any way and it is not an official version.
           <br />
           Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
           <br />
@@ -236,11 +173,12 @@ body {
         </div>
 
         <div class="footer-item">
-          Created by <a href="https://twitter.com/dral3x" target="_blank">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy" target="_blank">Brigita</a> and <a href="https://twitter.com/emanuele_r" target="_blank">Emanuele</a>.
+          Created by <a href="https://twitter.com/dral3x">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy">Brigita</a> and <a href="https://twitter.com/emanuele_r">Emanuele</a> ❤️️.
         </div>
 
         <div class="footer-item">
-          This website is updated every hour. Last update was {{now}}
+          This website is updated every hour or so.
+          Last update was {{now}}
         </div>
   		</div>
   </body>

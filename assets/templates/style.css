@@ -1,0 +1,181 @@
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 21px;
+  margin: 0px;
+}
+
+p {
+  margin: 0px 5px 5px 0px;
+}
+
+/* Layout */
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  background-color: black;
+  color: white;
+  font-weight: normal;
+  text-align: center;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.header-item-image {
+  display: flex;
+  flex: initial;
+
+  width: 200;
+}
+
+.header-item-text {
+  display: flex;
+  flex: 1;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 80px;
+}
+
+.main-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contribute-container {
+  display: flex;
+  flex-direction: row;
+
+  background-color: rgba(90, 153, 255, 0.1);
+  color: black;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+.contribute-item-fill {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  font-weight: lighter;
+  margin: 50px;
+}
+
+.contribute-item-fixed {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #F4F4F4;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin-top: 40px;
+}
+
+.faq-item-first {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  font-size: 14px;
+}
+
+.footer-item {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  padding: 10px;
+}
+
+/* Styles */
+
+.huge {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.accent {
+  color: #5A99FF;
+}
+
+.button {
+  display: inline-block;
+  background-color: #5A99FF;
+  border: none;
+  padding: 40px 80px;
+  border-radius: 12px;
+  color: white;
+  
+  text-align: center;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.faq-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.faq-question {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.faq-answer {
+  font-size: 21px;
+  font-weight: lighter;
+}
+
+.disclaimer {
+  color: #BA3030;
+}

@@ -45,8 +45,8 @@ class TemplateData {
         this._sortRecentItems();
 
         let now = moment().format("MMM D, YYYY [at] HH:mm:ss [UTC]", true);
-        let average = this.recent_overall_total > 0 ? Math.round(this.recent_overall_average/this.recent_overall_total) : 0;
-        let diff = this.recent_overall_total > 0 && this.old_overall_total > 0 ? Math.round(this.recent_overall_average/this.recent_overall_total-this.old_overall_average/this.old_overall_total) : 0;
+        let average = this.recent_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) : 0;
+        let diff = this.recent_overall_total > 0 && this.old_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) - Math.ceil(this.old_overall_average/this.old_overall_total) : 0;
 
         return {
             "last_30_days": this.recent_items,
