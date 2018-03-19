@@ -304,6 +304,149 @@ describe("Importer", () => {
 
     });
 
+    describe("direct messages", () => {
+
+        it("should ignore tweets from blacklisted users", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    events: [{
+                            "created_timestamp": "1520936585337",
+                            "message_create": { 
+                                "message_data": { 
+                                    "text": "5 days"
+                                },
+                                "sender_id": "973232735576829952"
+                            }
+                        }]
+                }, {
+                    statusCode: 200
+                });
+            });
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem");
+
+            let importer = new Importer(config);
+
+            importer._importDirectMessages((error) => {
+
+                expect(error).toBe(null);
+
+                expect(dynamodb.batchWriteItem).not.toHaveBeenCalled();
+                expect(dynamodb.put).toHaveBeenCalled();
+
+                done();
+
+            });
+
+        });
+
+        it("should save most recent timestamp as state", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    events: [{
+                            "created_timestamp": "1520936585337",
+                            "message_create": { 
+                                "message_data": { 
+                                    "text": "5 days"
+                                },
+                                "sender_id": "97323273529952"
+                            }
+                        }]
+                }, {
+                    statusCode: 200
+                });
+            });
+
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
+                cb(null, "Ok!");
+            });
+
+            let importer = new Importer(config);
+
+            importer._importDirectMessages((error, dates) => {
+
+                expect(dynamodb.batchWriteItem).toHaveBeenCalled();
+
+                let params = dynamodb.batchWriteItem.calls.mostRecent().args[0];
+                expect(params.RequestItems[config.get("dynamodb.table_datapoints")].length).toEqual(1);
+
+                let stateParams = dynamodb.put.calls.mostRecent().args[0];
+                expect(stateParams.Item.property).toBe("importer_twitter_dm_last_timestamp");
+                expect(stateParams.Item.value).toBe("1520936585337");
+
+                done();
+
+            });
+
+        });
+
+        it("should fetch new dm since saved last timestamp", (done) => {
+
+            spyOn(twitter, "get").and.callFake(function(path, params, cb) {
+                cb(null, {
+                    events: [{
+                            "created_timestamp": "2",
+                            "message_create": { 
+                                "message_data": { 
+                                    "text": "2 days"
+                                },
+                                "sender_id": "97323273529952"
+                            }
+                        },
+                        {
+                            "created_timestamp": "1",
+                            "message_create": { 
+                                "message_data": { 
+                                    "text": "1 day"
+                                },
+                                "sender_id": "97323273529952"
+                            }
+                        }]
+                }, {
+                    statusCode: 200
+                });
+            });
+
+            spyOn(dynamodb, "get").and.callFake(function(params, cb) {
+                cb(null, { Item: { "property": "importer_twitter_dm_last_timestamp", "value": "1" } });
+            });
+            spyOn(dynamodb, "put").and.callFake(function(params, cb) {
+                cb(null, { });
+            });
+            spyOn(dynamodb, "batchWriteItem").and.callFake(function(params, cb) {
+                cb(null, "Ok!");
+            });
+
+            let importer = new Importer(config);
+
+            importer._importDirectMessages((error, dates) => {
+
+                expect(twitter.get).toHaveBeenCalled();
+
+                let params = dynamodb.batchWriteItem.calls.mostRecent().args[0];
+                expect(params.RequestItems[config.get("dynamodb.table_datapoints")].length).toEqual(1);
+                expect(params.RequestItems[config.get("dynamodb.table_datapoints")][0].PutRequest.Item.text.S).toEqual("2 days");
+
+                done();
+
+            });
+
+        });
+    });
+
     describe("Import All Data", () => {
 
         it("should import both PUBLIC_TWEETS and DIRECT_MESSAGES", (done) => {

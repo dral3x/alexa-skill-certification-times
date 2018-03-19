@@ -15,7 +15,7 @@ class Importer {
         this.twitter_config = config.get("twitter");
 
         this.hashtag = '#skillcertificationtime';
-        this.users_blacklist = [ "skillcerttimes" ];
+        this.users_blacklist = [ "skillcerttimes", "973232735576829952" ];
     }
 
     importData(callback) {
@@ -35,7 +35,6 @@ class Importer {
             }
 
             console.log("[ALL] Import completed");
-            console.log("[ALL] dates? "+results);
 
             let set = new Set();
             for (let result of results) {
@@ -45,6 +44,12 @@ class Importer {
             }
 
             let dates = Array.from(set);
+            console.log("[ALL] dates? "+dates);
+            if (dates.length === 0) {
+                return;
+            }
+
+            console.log("[ALL] Requesting processing for dates");
             notifier.publish(this.topic, { "dates": dates }, (err) => {
 
                 // Ignore any error. Just log it
@@ -87,6 +92,7 @@ class Importer {
         
         async.waterfall([
             (cb) => cb(null, null),
+            this._fetchLastDirectMessageTimestamp.bind(this),
             this._fetchDirectMessages.bind(this),
             this._processDirectMessages.bind(this)
         ], function (err, result) {
@@ -109,8 +115,12 @@ class Importer {
 
         this._readState("importer_twitter_public_tweets_last_id", (err, state) => {
             
-            callback(null, state);
-            
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, state);
+            }
+
         });
     }
 
@@ -218,7 +228,16 @@ class Importer {
 
     /* Handling Direct Messages */
 
-    _fetchDirectMessages(last_cursor, callback) {
+    _fetchLastDirectMessageTimestamp(anything, callback) {
+
+        this._readState("importer_twitter_dm_last_timestamp", (err, state) => {
+            
+            callback(null, state);
+            
+        });
+    }
+
+    _fetchDirectMessages(last_timestamp, callback) {
         
         var tw_client = new Twitter(this.twitter_config);
         var params = {};
@@ -240,12 +259,20 @@ class Importer {
                 return callback(err);
             }
 
-            //console.log('Got events '+JSON.stringify(data));
-            //if (data.next_cursor) {
-            //    console.log('Got next_cursor '+data.next_cursor);
-            //}
+            if (!last_timestamp) {
+                return callback(null, data.events);
+            }
 
-            callback(null, data.events);
+            // Filter out messages older than last_timestamp
+            var events = [];
+            for (let event of data.events) {
+                if (event.created_timestamp > last_timestamp) {
+                    events.push(event);
+                }
+            }
+
+            callback(null, events);
+
         });
     }
 
@@ -267,6 +294,11 @@ class Importer {
             
             console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
 
+            if (this.users_blacklist.indexOf(user) >= 0) {
+                console.log('[DM] user '+ user + ' is blacklisted');
+                continue;
+            }
+
             items.push({
                 "type": { "S": "DIRECT_MESSAGE" },
                 "date": { "S": date },
@@ -280,17 +312,32 @@ class Importer {
 
         if (items.length == 0) {
             console.log("Nothing to import");
-            return callback(null, []);
+
+            if (messages.length > 0) {
+                this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
+            
+                    callback(null, []);
+            
+                });
+            } else {
+                callback(null, []);
+            }
+            return;
         }
 
         // Write data to db
-        this._writeItems(items, function (err) {
+        this._writeItems(items, (err) => {
 
             if (err) {
                 return callback(err);
             }
 
-            callback(null, Array.from(dates));
+            this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
+            
+                callback(null, Array.from(dates));
+            
+            });
+            
         });
     }
 
