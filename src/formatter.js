@@ -47,7 +47,7 @@ class Formatter {
         let days = Math.floor(duration);
         let hours = duration - Math.floor(duration);
         
-        return days + (days == 1 ? " day" : " days") + (hours >= 0.5 ? " and half" : "");
+        return days + (Math.abs(days) == 1 ? " day" : " days") + (hours >= 0.5 ? " and half" : "");
     }
 
     formatEmojiResult(result) {

@@ -95,7 +95,8 @@ module.exports = function(grunt) {
                     bucket: conf[env].bucket
                 },
                 files: [
-                    {expand: true, cwd: 'assets/templates/', src: ['**'], dest: 'templates/'}
+                    {expand: true, cwd: 'assets/templates/', src: ['**'], dest: 'templates/'},
+                    {expand: true, cwd: 'assets/templates/', src: ['*.css'], dest: 'public/'}
                 ]
             }
         },

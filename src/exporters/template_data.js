@@ -1,4 +1,5 @@
 const moment = require('moment');
+const formatter = require("../formatter");
 
 class TemplateData {
     
@@ -46,14 +47,18 @@ class TemplateData {
 
         let now = moment().format("MMM D, YYYY [at] HH:mm:ss [UTC]", true);
         let average = this.recent_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) : 0;
+        let average_text = formatter.formatHumanDuration(average);
         let diff = this.recent_overall_total > 0 && this.old_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) - Math.ceil(this.old_overall_average/this.old_overall_total) : 0;
+        let diff_text = formatter.formatHumanDuration(diff);
 
         return {
             "last_30_days": this.recent_items,
             "overall": { 
                 "average": average, 
+                "average_text": average_text, 
                 "count": this.recent_overall_total,
-                "diff": diff
+                "diff": diff,
+                "diff_text": diff_text
             },
             "now": now
         }

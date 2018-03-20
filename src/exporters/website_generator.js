@@ -1,6 +1,7 @@
 const AWS       = require('aws-sdk');
 const Mustache  = require('mustache');
 const moment    = require('moment');
+const async     = require("async");
 
 const DateUtil  = require('../date_util');
 const Data      = require('./template_data');
@@ -79,6 +80,7 @@ class WebsiteGenerator {
                 db.scan(params, onScan);
             } else {
 
+                console.log("Scan completed: "+dataModel);
                 // All tweets has been parsed. 
                 // Returns values
                 callback(null, dataModel);
@@ -90,10 +92,33 @@ class WebsiteGenerator {
 
     _exportPages(data, callback) {
 
+        let files = [ "index.html", "contribute.html" ];
+        let metrics = data.export();
         let s3 = new AWS.S3();
 
+        let processes = files.map((file) => (callback) => {
+            return this._exportPage(s3, file, metrics, callback);
+        });
+
+        async.parallel(processes, (err, results) => {
+
+            if (err) {
+                return callback(err);
+            }
+
+            callback(null, "All files generated");
+        });
+    }
+
+    _exportPage(s3, file, metrics, callback) {
+
+        console.log("Fetching "+file);
+
+        let templateFile = "templates/"+file;
+        let outputFile = "public/"+file;
+
         // Read template from S3
-        let getParams = { Bucket: this.bucket, Key: "templates/index.html" };
+        let getParams = { Bucket: this.bucket, Key: templateFile };
         s3.getObject(getParams, (err, file) => {
 
             if (err) {
@@ -103,15 +128,14 @@ class WebsiteGenerator {
 
             // Inject data into template
             var template = file.Body.toString();
-            var metrics = data.export()
-            console.log("METRICS: "+JSON.stringify(metrics, null, 2));
+            //console.log("METRICS: "+JSON.stringify(metrics, null, 2));
             var rendered = this._injectDataIntoTemplate(template, metrics);
             //console.log("RENDERED: "+rendered);
 
             // Write final file to S3
             let putParams = { 
                 Bucket: this.bucket, 
-                Key: "public/index.html", 
+                Key: outputFile, 
                 ContentType: 'text/html',
                 Expires: Math.floor(new Date().getTime()/1000) + 60*60,
                 Body: rendered

@@ -41,6 +41,31 @@ fixtures.dynamodb = {
     }
 };
 
+fixtures.s3 = {
+    use: () => {
+
+        // default behavior: error
+        var s3 = {
+            getObject: (params, callback) => { callback("S3 getObject mock error"); },
+            putObject: (params, callback) => { callback("S3 putObject mock error"); },
+        };
+
+        beforeEach(() => {
+
+            spyOn(AWS, "S3").and.callFake(() => {
+                return s3;
+            });
+
+        });
+
+        afterEach(() => {
+
+        });
+
+        return s3;
+    }
+};
+
 fixtures.twitter = {
     use: () => {
         

@@ -10,6 +10,9 @@ describe("Formatter", () => {
         expect(formatter.formatHumanDuration(1.1)).toBe("1 day");
         expect(formatter.formatHumanDuration(1.5)).toBe("1 day and half");
 
+        expect(formatter.formatHumanDuration(-1)).toBe("-1 day");
+        expect(formatter.formatHumanDuration(-2)).toBe("-2 days");
+
     });
 
     it("formatDate should work", () => {

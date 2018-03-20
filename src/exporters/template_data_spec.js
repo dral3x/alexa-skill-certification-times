@@ -44,6 +44,7 @@ describe("Data", () => {
 
         expect(result).not.toBe(null);
         expect(result.overall.average).toBe(5);
+        expect(result.overall.average_text).toBe("5 days");
         
     });
 
@@ -60,8 +61,28 @@ describe("Data", () => {
 
         expect(result).not.toBe(null);
         expect(result.overall.average).toBe(5);
+        expect(result.overall.average_text).toBe("5 days");
         expect(result.overall.count).toBe(6);
         expect(result.overall.diff).toBe(-4);
+        expect(result.overall.diff_text).toBe("-4 days");
+        
+    });
+
+    it("text example 3", () => {
+        
+        let data = new Data("2018-03-16");
+
+        data.addEntry("2018-03-08", 1, 1);
+        data.addEntry("2018-01-08", 2, 1);
+
+        let result = data.export();
+
+        expect(result).not.toBe(null);
+        expect(result.overall.average).toBe(1);
+        expect(result.overall.average_text).toBe("1 day");
+        expect(result.overall.count).toBe(1);
+        expect(result.overall.diff).toBe(-1);
+        expect(result.overall.diff_text).toBe("-1 day");
         
     });
 });
