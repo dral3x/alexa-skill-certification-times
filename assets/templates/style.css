@@ -36,15 +36,18 @@ a:hover, a:active {
     padding-top: 50px;
     padding-bottom: 50px;
   }
+}
 
+@media only screen and (min-width: 1200px) {
   .extra-padding {
-    margin: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 }
 
 .header-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   align-items: center;
 
@@ -52,13 +55,18 @@ a:hover, a:active {
   color: white;
   font-weight: normal;
   text-align: center;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 @media only screen and (min-width: 768px) {
   .header-container {
     flex-direction: row;
+
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 
@@ -78,16 +86,41 @@ a:hover, a:active {
   flex: 1;
 }
 
+.banner-container {
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(90, 153, 255, 0.4);
+  color: #2C4C81;
+  padding: 20px;
+}
+
+.banner-item {
+  
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 80px;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-container {
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
   .main-container {
     flex-direction: row;
+
+    padding-right: 0px;
   }
 }
 
@@ -95,6 +128,20 @@ a:hover, a:active {
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-item {
+    margin-bottom: 80px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-item {
+    margin-right: 80px;
+  }
 }
 
 .contribute-container {
@@ -109,20 +156,45 @@ a:hover, a:active {
 @media only screen and (min-width: 768px) {
   .contribute-container {
     flex-direction: row;
+    align-items: center;
   }
 }
 
-.contribute-item-fill {
+.contribute-container-inner {
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contribute-item {
+  display: flex;
+
+  padding-top: 20px;
 
   font-weight: lighter;
 }
 
-.contribute-item-fixed {
-  display: flex;
-  flex-direction: column;
+.contribute-item-last {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-item {
+    padding-right: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-item {
+    padding-top: 0px;
+  }
+
+  .contribute-item-last {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }
 
 .faq-container {
@@ -131,7 +203,6 @@ a:hover, a:active {
   justify-content: space-between;
 
   background-color: #F4F4F4;
-  margin-bottom: 50px;
 }
 
 .faq-item {
@@ -152,22 +223,16 @@ a:hover, a:active {
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;
+  align-items: center;
 
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .footer-item {
-  display: flex;
-  flex: 1;
   justify-content: center;
 
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* Styles */
@@ -176,6 +241,7 @@ a:hover, a:active {
   font-size: 50px;
   font-weight: bold;
 }
+
 @media only screen and (min-width: 768px) {
   .huge {
     font-size: 60px;
@@ -200,7 +266,7 @@ a:hover, a:active {
   display: inline-block;
   background-color: #5A99FF;
   border: none;
-  padding: 40px 80px;
+  padding: 30px 60px;
   border-radius: 12px;
   color: white;
   
@@ -229,5 +295,6 @@ a:hover, a:active {
 }
 
 .disclaimer {
+  font-size: 21px;
   color: #BA3030;
 }

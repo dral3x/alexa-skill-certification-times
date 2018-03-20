@@ -55,9 +55,10 @@
 
     <!-- Footer section -->
 
-    <div class="footer-container">
+    <div class="footer-container default-padding">
         <div class="footer-item disclaimer">
-            <b>DISCLAIMER:</b> This website is not associated with the Amazon Inc. in any way and it is not an official version.
+            <b>DISCLAIMER:</b> 
+            This website is not associated with the Amazon Inc. in any way and cannot be considered an Amazon official source of information
             <br />
             Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
             <br />
@@ -65,14 +66,22 @@
         </div>
 
         <div class="footer-item">
-          Created by <a href="https://twitter.com/dral3x">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy">Brigita</a> and <a href="https://twitter.com/emanuele_r">Emanuele</a> ❤️️.
-      </div>
+            Created by <a href="https://twitter.com/dral3x">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy">Brigita</a> and <a href="https://twitter.com/emanuele_r">Emanuele</a> ❤️️.
+        </div>
 
-      <div class="footer-item">
-          This website is updated every hour or so.
-          Last update was {{now}}
-      </div>
-  </div>
+        <div class="footer-item">
+            This website is updated every hour or so.
+            Last update was {{now}}
+        </div>
+    </div>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-367202-7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-367202-7');
+    </script>
 </body>
 </html>

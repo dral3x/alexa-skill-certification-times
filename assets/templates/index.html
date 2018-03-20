@@ -27,9 +27,14 @@
         data.addColumn('number', 'Average time');
 
         data.addRows([
-          // {{#last_30_days}}
-          // [new Date('{{date}}'), {{value}}],
-          // {{/last_30_days}}
+          // Real data
+          /*
+          {{#last_30_days}}
+          [new Date('{{date}}'), {{value}}],
+          {{/last_30_days}}
+          */
+          
+          // Testing data
           [new Date('2018-03-01'), 15],
           [new Date('2018-03-02'), 5],
           [new Date('2018-03-03'), 9],
@@ -38,7 +43,6 @@
 
         var options = {
           chart: {
-            title: 'Trend graphs for the last 30 days',
           },
           legend: {
             position: "none"
@@ -65,14 +69,21 @@
         </div>
   		</div>
 
+      <!-- Banner section -->
+
+      <div class="banner-container">
+        <div class="banner-item">
+          <b>DISCLAIMER:</b> This website is not associated with the Amazon Inc. in any way and cannot be considered an Amazon official source of information.
+        </div>
+      </div>
 
       <!-- Main section -->
 
   		<div class="main-container">
         <div class="main-item summary">
           <div class="title">The average time of the last 30 days</div>
-          <div class="huge accent">{{overall.average}} days</div>
-          <div><b>{{overall.diff}} day</b> compared to the previous cycle</div>
+          <div class="huge accent">{{overall.average_text}}</div>
+          <div><b>{{overall.diff_text}}</b> compared to the previous cycle</div>
           <div>based on {{overall.count}} reports</div>
         </div>
 
@@ -85,11 +96,15 @@
       <!-- Contribute section -->
 
       <div class="contribute-container default-padding">
-        <div class="contribute-item-fill extra-padding">
-          This site is only made possible by people like you contributing review durations.<br />
-          <div class="accent"><b>Please contribute your latest review.</b></div>
+        <div class="contribute-container-inner extra-padding">
+          <div class="contribute-item">
+            This site is only made possible by people like you contributing review durations.
+          </div>
+          <div class="contribute-item">
+            <span class="accent"><b>Please contribute your latest review.</b></span>
+          </div>
         </div>
-        <div class="contribute-item-fixed extra-padding">
+        <div class="contribute-item-last extra-padding">
           <a class="button" href="contribute.html">CONTRIBUTE</a>
         </div>
       </div>
@@ -109,8 +124,8 @@
         <div class="faq-item">
           <div class="faq-question">Where does this data come from?</div>
           <div class="faq-answer">
-            This is NOT official Amazon data. 
-            It is based only on data gathered from Twitter where people post their latest certification times using the <a href="https://twitter.com/hashtag/skillcertificationtime">#alexacertificationtime</a> hash tag. 
+            Let me be super clear: Amazon <b>does NOT share</b> any official nor internal information with this site.
+            Data are based only on information gathered from Twitter, where people voluntarily post their latest certification times using the <a href="https://twitter.com/hashtag/skillcertificationtime">#alexacertificationtime</a> hash tag. 
             More details are available in the <a href="contribute.html">How to Contribute</a> page.
           </div>
         </div>
@@ -163,9 +178,10 @@
 
       <!-- Footer section -->
 
-  		<div class="footer-container">
+  		<div class="footer-container default-padding">
   			<div class="footer-item disclaimer">
-          <b>DISCLAIMER:</b> This website is not associated with the Amazon Inc. in any way and it is not an official version.
+          <b>DISCLAIMER:</b> 
+          This website is not associated with the Amazon Inc. in any way and cannot be considered an Amazon official source of information
           <br />
           Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
           <br />
@@ -181,5 +197,14 @@
           Last update was {{now}}
         </div>
   		</div>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-367202-7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-367202-7');
+      </script>
   </body>
 </html>
