@@ -85,6 +85,21 @@ module.exports = function(grunt) {
             }
         },
 
+        aws_s3: {
+            options: {
+                awsProfile: conf[env].profile,
+                region: conf[env].region
+            },
+            templates: {
+                options: {
+                    bucket: conf[env].bucket
+                },
+                files: [
+                    {expand: true, cwd: 'assets/templates/', src: ['**'], dest: 'templates/'}
+                ]
+            }
+        },
+
         eslint: {
             options: {
                 configFile: ".eslintrc",
@@ -110,6 +125,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-aws-lambda");
+    grunt.loadNpmTasks("grunt-aws-s3");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-shell");
     grunt.loadNpmTasks("gruntify-eslint");
@@ -168,6 +184,14 @@ module.exports = function(grunt) {
             "lambda_deploy:runGenerator",
             "lambda_deploy:runProcessor",
             "lambda_deploy:runImporter"
+        ]
+    );
+
+    grunt.registerTask(
+        "deploy_website",
+        "Deploy website pages to S3.",
+        [
+            "aws_s3:templates"
         ]
     );
 
