@@ -8,11 +8,43 @@ p {
   margin: 0px 5px 5px 0px;
 }
 
+a:link, a:visited {
+  color: #5A99FF;
+  font-weight: bold;
+}
+a:hover, a:active {
+  color: #5A99FF;
+  font-weight: bold;
+}
+
 /* Layout */
+
+.default-padding {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.extra-padding {
+}
+
+@media only screen and (min-width: 768px) {
+  .default-padding {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .extra-padding {
+    margin: 50px;
+  }
+}
 
 .header-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
 
@@ -24,23 +56,39 @@ p {
   padding-right: 80px;
 }
 
+@media only screen and (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+  }
+}
+
 .header-item-image {
-  display: flex;
-  flex: initial;
+  flex: 1;
 
   width: 200;
 }
 
+@media only screen and (min-width: 768px) {
+  .header-item-image {
+    flex: initial;
+  }
+}
+
 .header-item-text {
-  display: flex;
   flex: 1;
 }
 
 .main-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 80px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-container {
+    flex-direction: row;
+  }
 }
 
 .main-item {
@@ -51,15 +99,17 @@ p {
 
 .contribute-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   background-color: rgba(90, 153, 255, 0.1);
   color: black;
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-top: 50px;
-  padding-bottom: 50px;
   margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-container {
+    flex-direction: row;
+  }
 }
 
 .contribute-item-fill {
@@ -68,13 +118,11 @@ p {
   flex: 1;
 
   font-weight: lighter;
-  margin: 50px;
 }
 
 .contribute-item-fixed {
   display: flex;
   flex-direction: column;
-  margin: 50px;
 }
 
 .faq-container {
@@ -83,10 +131,6 @@ p {
   justify-content: space-between;
 
   background-color: #F4F4F4;
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-top: 50px;
-  padding-bottom: 50px;
   margin-bottom: 50px;
 }
 
@@ -129,8 +173,13 @@ p {
 /* Styles */
 
 .huge {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
+}
+@media only screen and (min-width: 768px) {
+  .huge {
+    font-size: 60px;
+  }
 }
 
 .title {
@@ -159,6 +208,9 @@ p {
   text-decoration: none;
   font-size: 26px;
   font-weight: bold;
+}
+.button:link, .button:visited, .button:hover, .button:active {
+  color: white;
 }
 
 .faq-title {
