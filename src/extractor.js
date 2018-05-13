@@ -19,7 +19,7 @@ module.exports = {
         match = string.match(pattern);
         if (match != null) {
             let date = moment([match[1], match[2]-1, match[3]]); 
-            return date.isValid() ? date.format("YYYY-MM-DD") : null;
+            return date.isValid() ? date : null;
         }
 		
         // format: D MMM
@@ -28,7 +28,7 @@ module.exports = {
         if (match != null) {
             let year = moment().year();
             let date = moment(match[0], "D MMM").year(year);
-            return date.isValid() ? date.format("YYYY-MM-DD") : null;
+            return date.isValid() ? date : null;
         }
 
         return null;

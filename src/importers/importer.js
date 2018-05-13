@@ -3,6 +3,7 @@ const AWS = require('aws-sdk');
 const async = require("async");
 
 const Extractor = require('../extractor');
+const ItemFactory = require('../item_factory');
 const formatter = require('../formatter');
 const notifier = require('../notifier');
 
@@ -163,6 +164,7 @@ class Importer {
         // DEBUG
         //console.log('statuses: '+ JSON.stringify(statuses));
 
+        let factory = new ItemFactory();
         var dates = new Set();
         var items = [];
 
@@ -172,7 +174,6 @@ class Importer {
             let id = status.id_str;
             let created_at = new Date(status.created_at);
             let timestamp = formatter.formatDateTime(created_at);
-            let date = formatter.formatDate(created_at);
             let text = status.text;
             let user = status.user.screen_name;
 
@@ -183,16 +184,9 @@ class Importer {
                 continue;
             }
 
-            items.push({
-                "type": { "S": "PUBLIC_TWEET" },
-                "date": { "S": date },
-                "timestamp": { "S": timestamp },
-                "id": { "S": id },
-                "user": { "S": user },
-                "text": { "S": text }
-            });
+            items.push(factory.itemFromTweet(created_at, user, id, created_at, text));
 
-            dates.add(date);
+            dates.add(formatter.formatDate(created_at));
         }
 
         if (items.length == 0) {
@@ -280,6 +274,7 @@ class Importer {
 
         console.log('processing '+messages.length+ ' messages');
 
+        let factory = new ItemFactory();
         var dates = new Set();
         var items = [];
 
@@ -290,7 +285,7 @@ class Importer {
             let text = message.message_create.message_data.text;
             let user = message.message_create.sender_id;
             let timestamp = formatter.formatDateTime(created_at);
-            let date = Extractor.extractDate(text) || formatter.formatDate(created_at);
+            let date = Extractor.extractDate(text) || created_at;
             
             console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
 
@@ -299,15 +294,9 @@ class Importer {
                 continue;
             }
 
-            items.push({
-                "type": { "S": "DIRECT_MESSAGE" },
-                "date": { "S": date },
-                "timestamp": { "S": timestamp },
-                "user": { "S": user },
-                "text": { "S": text }
-            });
+            items.push(factory.itemFromDM(created_at, user, date, text));
 
-            dates.add(date);
+            dates.add(formatter.formatDate(date));
         }
 
         if (items.length == 0) {

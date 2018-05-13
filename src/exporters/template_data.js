@@ -49,7 +49,7 @@ class TemplateData {
         let average = this.recent_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) : 0;
         let average_text = formatter.formatHumanDuration(average);
         let diff = this.recent_overall_total > 0 && this.old_overall_total > 0 ? Math.ceil(this.recent_overall_average/this.recent_overall_total) - Math.ceil(this.old_overall_average/this.old_overall_total) : 0;
-        let diff_text = formatter.formatHumanDuration(diff);
+        let diff_text = (diff > 0 ? "+" : "") + formatter.formatHumanDuration(diff);
 
         return {
             "last_30_days": this.recent_items,

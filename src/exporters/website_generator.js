@@ -4,18 +4,19 @@ const moment    = require('moment');
 const async     = require("async");
 
 const DateUtil  = require('../date_util');
-const Data      = require('./template_data');
+const DataGenerator = require('./data_generator');
 
 class WebsiteGenerator {
 
     constructor(config) {
         this.table = config.get('dynamodb.table_daily');
         this.bucket = config.get('s3.bucket_website');
+        this.generator = new DataGenerator(config);
     }
 
     generateSite(callback) {
 
-        this._generateDataModel((err, data) => {
+        this.generator.generateDataModel((err, data) => {
 
             if (err) {
                 console.log('Unable to fetch data: '+err);
@@ -36,58 +37,6 @@ class WebsiteGenerator {
 
         });
 
-    }
-
-    _generateDataModel(callback) {
-
-        let db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
-        
-        var dataModel = new Data(new Date());
-
-        var params = {
-            TableName: this.table,
-            ProjectionExpression: "#fdate, #favg, #fcount",
-            FilterExpression: "#fdate BETWEEN :dt_first AND :dt_last",
-            ExpressionAttributeNames: {
-                "#fdate": "date",
-                "#fcount": "count",
-                "#favg": "avg"
-            },
-            ExpressionAttributeValues: {
-                ":dt_first": { 'S': dataModel.startDate() },
-                ":dt_last": { 'S': dataModel.endDate() }
-            }
-        };
-
-        function onScan(err, data) {
-            
-            if (err) {
-                console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
-                return callback(err);
-            }
-
-            // Add all results to data
-
-            data.Items.forEach(function(item) {
-                dataModel.addEntry(item.date['S'], parseFloat(item.avg['N']), parseInt(item.count['N']));
-            });
-
-            // continue scanning when LastEvaluatedKey is defined
-
-            if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanning for more...");
-                params.ExclusiveStartKey = data.LastEvaluatedKey;
-                db.scan(params, onScan);
-            } else {
-
-                console.log("Scan completed: "+dataModel);
-                // All tweets has been parsed. 
-                // Returns values
-                callback(null, dataModel);
-            }
-        }
-
-        db.scan(params, onScan);
     }
 
     _exportPages(data, callback) {

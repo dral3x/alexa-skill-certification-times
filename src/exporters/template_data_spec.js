@@ -85,4 +85,22 @@ describe("Data", () => {
         expect(result.overall.diff_text).toBe("-1 day");
         
     });
+
+    it("text example 4", () => {
+        
+        let data = new Data("2018-03-16");
+
+        data.addEntry("2018-03-08", 2, 1);
+        data.addEntry("2018-01-08", 1, 1);
+
+        let result = data.export();
+
+        expect(result).not.toBe(null);
+        expect(result.overall.average).toBe(2);
+        expect(result.overall.average_text).toBe("2 days");
+        expect(result.overall.count).toBe(1);
+        expect(result.overall.diff).toBe(1);
+        expect(result.overall.diff_text).toBe("+1 day");
+        
+    });
 });
