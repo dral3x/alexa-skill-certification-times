@@ -7,7 +7,7 @@ describe('Repository', () => {
     const config = fixtures.use("conf");
     const state = {};
 
-    it('should update all pages', (done) => {
+    xit('should update all pages', (done) => {
 
         let repository = new Repository(state, config);
 
