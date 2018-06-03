@@ -17,23 +17,23 @@ class DataGenerator {
 
         var params = {
             TableName: this.table,
-            ProjectionExpression: "#fdate, #favg, #fcount",
-            FilterExpression: "#fdate BETWEEN :dt_first AND :dt_last",
+            ProjectionExpression: '#fdate, #favg, #fcount',
+            FilterExpression: '#fdate BETWEEN :dt_first AND :dt_last',
             ExpressionAttributeNames: {
-                "#fdate": "date",
-                "#fcount": "count",
-                "#favg": "avg"
+                '#fdate': 'date',
+                '#fcount': 'count',
+                '#favg': 'avg'
             },
             ExpressionAttributeValues: {
-                ":dt_first": { 'S': dataModel.startDate() },
-                ":dt_last": { 'S': dataModel.endDate() }
+                ':dt_first': { 'S': dataModel.startDate() },
+                ':dt_last': { 'S': dataModel.endDate() }
             }
         };
 
         function onScan(err, data) {
             
             if (err) {
-                console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+                console.error('Unable to scan the table. Error JSON:', JSON.stringify(err, null, 2));
                 return callback(err);
             }
 
@@ -45,13 +45,13 @@ class DataGenerator {
 
             // continue scanning when LastEvaluatedKey is defined
 
-            if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanning for more...");
+            if (typeof data.LastEvaluatedKey != 'undefined') {
+                console.log('Scanning for more...');
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 db.scan(params, onScan);
             } else {
 
-                console.log("Scan completed: "+dataModel);
+                console.log('Scan completed: '+dataModel);
                 // All tweets has been parsed. 
                 // Returns values
                 callback(null, dataModel);

@@ -1,30 +1,35 @@
 {
-  "name": "alexa-skill-certification-time",
-  "version": "0.0.1",
-  "description": "Fetch tweets with specific hashtag, generate statistics and the website",
-  "main": "index.js",
-  "scripts": {
-    "test": "JASMINE_CONFIG_PATH=./jasmine.json NODE_ENV=test ./node_modules/.bin/jasmine"
-  },
-  "author": "Alessandro Calzavara",
-  "license": "MIT",
-  "dependencies": {
-    "async": "^2.6.0",
-    "aws-sdk": "^2.207.0",
-    "moment": "^2.21.0",
-    "mustache": "^2.3.0",
-    "reconfig": "^3.3.0",
-    "twit": "^2.2.9"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.2",
-    "grunt-aws-lambda": "^0.13.0",
-    "grunt-aws-s3": "^2.0.0",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-shell": "^2.1.0",
-    "gruntify-eslint": "^4.0.0",
-    "jasmine": "^3.1.0"
-  }
+    "name": "alexa-skill-certification-time",
+    "version": "0.0.1",
+    "description": "Fetch tweets with specific hashtag, generate statistics and the website",
+    "main": "index.js",
+    "scripts": {
+        "test": "JASMINE_CONFIG_PATH=./jasmine.json NODE_ENV=test ./node_modules/.bin/jasmine"
+    },
+    "author": "Alessandro Calzavara",
+    "license": "MIT",
+    "dependencies": {
+        "ask-sdk-core": "^2.0.4",
+        "ask-sdk-dynamodb-persistence-adapter": "^2.0.4",
+        "ask-sdk-model": "^1.2.0",
+        "async": "^2.6.0",
+        "aws-sdk": "^2.207.0",
+        "moment": "^2.21.0",
+        "mustache": "^2.3.0",
+        "reconfig": "^3.3.0",
+        "string-template": "^1.0.0",
+        "twit": "^2.2.9"
+    },
+    "devDependencies": {
+        "eslint-plugin-jasmine": "^2.10.1",
+        "grunt": "^1.0.2",
+        "grunt-aws-lambda": "^0.13.0",
+        "grunt-aws-s3": "^2.0.0",
+        "grunt-contrib-clean": "^1.1.0",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-shell": "^2.1.0",
+        "gruntify-eslint": "^4.0.0",
+        "jasmine": "^3.1.0"
+    }
 }

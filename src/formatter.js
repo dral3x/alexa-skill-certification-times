@@ -9,7 +9,7 @@ class Formatter {
             return null;
         }
 
-        return parsed.format("YYYY-MM-DD", true);
+        return parsed.format('YYYY-MM-DD', true);
     }
 
     formatDateTime(date) {
@@ -19,7 +19,7 @@ class Formatter {
             return null;
         }
 
-        return parsed.format("YYYY-MM-DD HH:mm:ss", true);
+        return parsed.format('YYYY-MM-DD HH:mm:ss', true);
     }
 
     formatHumanDate(date) {
@@ -29,7 +29,7 @@ class Formatter {
             return null;
         }
 
-        return parsed.format("MMM D, YYYY", true);
+        return parsed.format('MMM D, YYYY', true);
     }
 
     formatHumanDateTime(date) {
@@ -39,7 +39,7 @@ class Formatter {
             return null;
         }
 
-        return parsed.format("MMM D, YYYY [at] HH:mm:ss [UTC]", true);
+        return parsed.format('MMM D, YYYY [at] HH:mm:ss [UTC]', true);
     }
 
     formatHumanDuration(duration) {
@@ -47,12 +47,12 @@ class Formatter {
         let days = Math.floor(duration);
         let hours = duration - Math.floor(duration);
         
-        return days + (Math.abs(days) == 1 ? " day" : " days") + (hours >= 0.5 ? " and half" : "");
+        return days + (Math.abs(days) == 1 ? ' day' : ' days') + (hours >= 0.5 ? ' and half' : '');
     }
 
     formatEmojiResult(result) {
 
-        return result <= 5.0 ? "🎉" : "🐌";
+        return result <= 5.0 ? '🎉' : '🐌';
     }
 }
 

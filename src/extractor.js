@@ -15,7 +15,7 @@ module.exports = {
         var match;
 
         // format: YYYY-MM-DD and YYYY-M-D
-        pattern = /(\d{4})\-(\d{1,2})\-(\d{1,2})/;
+        pattern = /(\d{4})-(\d{1,2})-(\d{1,2})/;
         match = string.match(pattern);
         if (match != null) {
             let date = moment([match[1], match[2]-1, match[3]]); 
@@ -27,7 +27,7 @@ module.exports = {
         match = string.match(pattern);
         if (match != null) {
             let year = moment().year();
-            let date = moment(match[0], "D MMM").year(year);
+            let date = moment(match[0], 'D MMM').year(year);
             return date.isValid() ? date : null;
         }
 

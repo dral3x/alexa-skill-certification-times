@@ -1,6 +1,6 @@
 const Twitter = require('twit');
 const AWS = require('aws-sdk');
-const async = require("async");
+const async = require('async');
 
 const Extractor = require('../extractor');
 const ItemFactory = require('../item_factory');
@@ -12,16 +12,16 @@ class Importer {
     constructor(config) {
         this.table = config.get('dynamodb.table_datapoints');
         this.table_state = config.get('dynamodb.table_state');
-        this.topic = config.get("sns.topic_request_process");
-        this.twitter_config = config.get("twitter");
+        this.topic = config.get('sns.topic_request_process');
+        this.twitter_config = config.get('twitter');
 
         this.hashtag = '#skillcertificationtime';
-        this.users_blacklist = [ "skillcerttimes", "973232735576829952" ];
+        this.users_blacklist = [ 'skillcerttimes', '973232735576829952' ];
     }
 
     importData(callback) {
 
-        console.log("[ALL] Importing data");
+        console.log('[ALL] Importing data');
 
         let importers = [ 
             this._importPublicTweets.bind(this),
@@ -31,11 +31,11 @@ class Importer {
         async.parallel(importers, (err, results) => {
 
             if (err) {
-                console.log("[ALL] Unable to import data: "+err);
+                console.log('[ALL] Unable to import data: '+err);
                 return callback(err);
             }
 
-            console.log("[ALL] Import completed");
+            console.log('[ALL] Import completed');
 
             let set = new Set();
             for (let result of results) {
@@ -45,17 +45,17 @@ class Importer {
             }
 
             let dates = Array.from(set);
-            console.log("[ALL] dates? "+dates);
+            console.log('[ALL] dates? '+dates);
             if (dates.length === 0) {
                 return;
             }
 
-            console.log("[ALL] Requesting processing for dates");
-            notifier.publish(this.topic, { "dates": dates }, (err) => {
+            console.log('[ALL] Requesting processing for dates');
+            notifier.publish(this.topic, { 'dates': dates }, (err) => {
 
                 // Ignore any error. Just log it
                 if (err) {
-                    console.error("[ALL] Unable to publish on topic "+this.topic+": "+err);
+                    console.error('[ALL] Unable to publish on topic '+this.topic+': '+err);
                 }
 
                 callback(null, dates);
@@ -66,7 +66,7 @@ class Importer {
 
     _importPublicTweets(callback) {
 
-        console.log("[TWEETS] Importing data");
+        console.log('[TWEETS] Importing data');
         
         async.waterfall([
             (cb) => cb(null, null),
@@ -80,7 +80,7 @@ class Importer {
                 return callback(err);
             }
 
-            console.log("[TWEETS] Import completed with "+result);
+            console.log('[TWEETS] Import completed with '+result);
             callback(null, result);
 
         });
@@ -89,7 +89,7 @@ class Importer {
 
     _importDirectMessages(callback) {
 
-        console.log("[DM] Importing data");
+        console.log('[DM] Importing data');
         
         async.waterfall([
             (cb) => cb(null, null),
@@ -114,7 +114,7 @@ class Importer {
 
     _fetchLastPublicTweetId(anything, callback) {
 
-        this._readState("importer_twitter_public_tweets_last_id", (err, state) => {
+        this._readState('importer_twitter_public_tweets_last_id', (err, state) => {
             
             if (err) {
                 callback(err);
@@ -130,7 +130,7 @@ class Importer {
         var tw_client = new Twitter(this.twitter_config);
         var params = { 'q': this.hashtag };
         if (last_id) {
-            params["since_id"] = last_id;
+            params['since_id'] = last_id;
         }
 
         tw_client.get('search/tweets', params, function (err, data, response) {
@@ -190,12 +190,12 @@ class Importer {
         }
 
         if (items.length == 0) {
-            console.log("Nothing to import");
+            console.log('Nothing to import');
 
             if (statuses.length == 0) {
                 callback(null, []);
             } else {
-                this._writeState("importer_twitter_public_tweets_last_id", statuses[0].id_str, (err) => {
+                this._writeState('importer_twitter_public_tweets_last_id', statuses[0].id_str, () => {
 
                     callback(null, []);
 
@@ -211,7 +211,7 @@ class Importer {
                 return callback(err);
             }
 
-            this._writeState("importer_twitter_public_tweets_last_id", statuses[0].id_str, (err) => {
+            this._writeState('importer_twitter_public_tweets_last_id', statuses[0].id_str, () => {
 
                 callback(null, Array.from(dates));
 
@@ -224,7 +224,7 @@ class Importer {
 
     _fetchLastDirectMessageTimestamp(anything, callback) {
 
-        this._readState("importer_twitter_dm_last_timestamp", (err, state) => {
+        this._readState('importer_twitter_dm_last_timestamp', (err, state) => {
             
             callback(null, state);
             
@@ -300,10 +300,10 @@ class Importer {
         }
 
         if (items.length == 0) {
-            console.log("Nothing to import");
+            console.log('Nothing to import');
 
             if (messages.length > 0) {
-                this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
+                this._writeState('importer_twitter_dm_last_timestamp', messages[0].created_timestamp, () => {
             
                     callback(null, []);
             
@@ -321,7 +321,7 @@ class Importer {
                 return callback(err);
             }
 
-            this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
+            this._writeState('importer_twitter_dm_last_timestamp', messages[0].created_timestamp, () => {
             
                 callback(null, Array.from(dates));
             
@@ -350,10 +350,10 @@ class Importer {
         db.batchWriteItem(params, function(err, data) {
             
             if (err) {
-                console.log("Error", err);
+                console.log('Error', err);
                 callback(err);
             } else {
-                console.log("Success", data);
+                console.log('Success', data);
                 callback(null);
             }
 
@@ -367,14 +367,14 @@ class Importer {
         var params = {
             TableName: this.table_state,
             Key: {
-                "property": key
+                'property': key
             }
         };
 
         db.get(params, function(err, data) {
             
             if (err) {
-                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                console.error('Unable to read item. Error JSON:', JSON.stringify(err, null, 2));
                 return callback(err);
             }
 
@@ -395,20 +395,20 @@ class Importer {
         var params = {
             TableName: this.table_state,
             Item: {
-                "property": key,
-                "value": state
+                'property': key,
+                'value': state
             }
         };
 
         db.put(params, function(err, data) {
             
             if (err) {
-                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                console.error('Unable to read item. Error JSON:', JSON.stringify(err, null, 2));
                 return callback(err);
             }
 
             // DEBUG
-            console.log("PutItem succeeded:", JSON.stringify(data, null, 2));
+            console.log('PutItem succeeded:', JSON.stringify(data, null, 2));
 
             callback(null, data.Item);
 

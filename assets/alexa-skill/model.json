@@ -1,0 +1,103 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "skill certification",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "ReadAverageTime",
+          "samples": [
+            "what's today average",
+            "what's the average",
+            "what is the average",
+            "today average",
+            "current average",
+            "the current average",
+            "current duration",
+            "the current duration",
+            "the average for today",
+            "the average",
+            "the duration"
+          ]
+        },
+        {
+          "name": "InsertAverageTime",
+          "slots": [
+            {
+              "name": "duration",
+              "type": "AMAZON.DURATION",
+              "samples": [
+                "{duration}"
+              ]
+            }
+          ],
+          "samples": [
+            "to record {duration}",
+            "to insert {duration}",
+            "insert {duration}",
+            "track {duration}",
+            "record new time",
+            "record {duration}",
+            "insert new duration",
+            "record duration",
+            "add new duration",
+            "add new time"
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "InsertAverageTime",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "duration",
+              "type": "AMAZON.DURATION",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1463038388940.867782908918"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1463038388940.867782908918",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "how many days?"
+          },
+          {
+            "type": "PlainText",
+            "value": "how much time it took?"
+          },
+          {
+            "type": "PlainText",
+            "value": "which is the duration?"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -14,7 +14,8 @@ module.exports = {
     "dynamodb": {
         table_datapoints:   '',
         table_daily:        '',
-        table_state:        ''
+        table_state:        '',
+        table_skill:        ''
     },
 
     "s3": {
@@ -24,6 +25,10 @@ module.exports = {
     "sns": {
         topic_request_process:          '',
         topic_request_generate_website: ''
+    },
+
+    "skill": {
+        app_id: ''
     },
 
 }

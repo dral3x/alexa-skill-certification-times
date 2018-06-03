@@ -1,9 +1,7 @@
 const AWS       = require('aws-sdk');
 const Mustache  = require('mustache');
-const moment    = require('moment');
-const async     = require("async");
+const async     = require('async');
 
-const DateUtil  = require('../date_util');
 const DataGenerator = require('./data_generator');
 
 class WebsiteGenerator {
@@ -23,15 +21,15 @@ class WebsiteGenerator {
                 return callback(err);
             }
 
-            this._exportPages(data, (err, results) => {
+            this._exportPages(data, (err) => {
 
                 if (err) {
                     console.log('Unable to export pages: '+err);
                     return callback(err);
                 }
 
-                console.log("Success!");
-                callback(null, "Website pages updated!");
+                console.log('Success!');
+                callback(null, 'Website pages updated!');
 
             });
 
@@ -41,7 +39,7 @@ class WebsiteGenerator {
 
     _exportPages(data, callback) {
 
-        let files = [ "index.html", "contribute.html" ];
+        let files = [ 'index.html', 'contribute.html' ];
         let metrics = data.export();
         let s3 = new AWS.S3();
 
@@ -49,22 +47,22 @@ class WebsiteGenerator {
             return this._exportPage(s3, file, metrics, callback);
         });
 
-        async.parallel(processes, (err, results) => {
+        async.parallel(processes, (err) => {
 
             if (err) {
                 return callback(err);
             }
 
-            callback(null, "All files generated");
+            callback(null, 'All files generated');
         });
     }
 
     _exportPage(s3, file, metrics, callback) {
 
-        console.log("Fetching "+file);
+        console.log('Fetching '+file);
 
-        let templateFile = "templates/"+file;
-        let outputFile = "public/"+file;
+        let templateFile = 'templates/'+file;
+        let outputFile = 'public/'+file;
 
         // Read template from S3
         let getParams = { Bucket: this.bucket, Key: templateFile };
@@ -92,12 +90,12 @@ class WebsiteGenerator {
             s3.putObject(putParams, function(err, pdata) {
 
                 if (err) {
-                    console.log("Unable to write file to S3", err);
+                    console.log('Unable to write file to S3', err);
                     return callback(err);
                 }
 
-                console.log("Successfully uploaded file to S3: "+pdata);
-                callback(null, "YEAH");
+                console.log('Successfully uploaded file to S3: '+pdata);
+                callback(null, 'YEAH');
 
             });
         

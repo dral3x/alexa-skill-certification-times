@@ -13,9 +13,13 @@ module.exports = function(grunt) {
             "processor_arn":        secrets.processor_arn,
             "site_generator_arn":   secrets.site_generator_arn,
             "twitter_poster_arn":   secrets.twitter_poster_arn,
+            "skill_arn":            secrets.skill_arn,
+            "skill_id":             secrets.skill_id, 
             "bucket":               secrets.bucket
        },
        "test": {
+            "skill_id":         "", 
+            "profile":          "",
             "importer_arn":     "NONE",
             "processor_arn":    "NONE"
        }
@@ -25,6 +29,8 @@ module.exports = function(grunt) {
         currDir:                __dirname,
         packageVersion:         pkg.version.replace(/\./g, "-"),
         env:                    env,
+        skill_id:               conf[env].skill_id,
+        aws_profile:            conf[env].profile,
         now_date:               grunt.template.today('yyyy-mm-dd-HHMMss'),
 
         watch: {
@@ -82,6 +88,10 @@ module.exports = function(grunt) {
             runTwitterPoster: {
                 arn: conf[env].twitter_poster_arn,
                 package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
+            },
+            runAlexaSkill: {
+                arn: conf[env].skill_arn,
+                package: "<%= currDir %>/dist/alexa-skill-certification-time_<%= packageVersion %>_latest.zip"
             }
         },
 
@@ -120,6 +130,26 @@ module.exports = function(grunt) {
             run_tests: {
                 command: "JASMINE_CONFIG_PATH=./jasmine.json NODE_ENV=test ./node_modules/.bin/jasmine"
             },
+
+            download_skill: {
+                command: "ask api get-skill -s <%= skill_id %> -p <%= aws_profile %> > <%= currDir %>/assets/alexa-skill/skill.json"
+            },
+
+            upload_skill: {
+                command: "ask api update-skill -s <%= skill_id %> -p <%= aws_profile %> -f <%= currDir %>/assets/alexa-skill/skill.json"
+            },
+
+            download_model: {
+                command: "ask api get-model -s <%= skill_id %>  -p <%= aws_profile %>-l en-US > <%= currDir %>/assets/alexa-skill/model.json"
+            },
+
+            upload_model: {
+                command: "ask api update-model -s <%= skill_id %> -p <%= aws_profile %> -l en-US -f <%= currDir %>/assets/alexa-skill/model.json"
+            },
+
+            check_model_status: {
+                command: "node <%= currDir %>/scripts/checkModelStatus.js <%= skill_id %> en-US"
+            }
         }
     };
 
@@ -185,7 +215,8 @@ module.exports = function(grunt) {
             "clean:env_based_conf_file",            
             "lambda_deploy:runGenerator",
             "lambda_deploy:runProcessor",
-            "lambda_deploy:runImporter"
+            "lambda_deploy:runImporter",
+            "lambda_deploy:runPoster"
         ]
     );
 
@@ -194,6 +225,26 @@ module.exports = function(grunt) {
         "Deploy website pages to S3.",
         [
             "aws_s3:templates"
+        ]
+    );
+
+    grunt.registerTask(
+        "deploy_skill_lambda",
+        "Deploy the Alexa skill lambda",
+        [
+            "copy:env_based_conf_file",
+            "lambda_package",
+            "clean:env_based_conf_file",
+            "lambda_deploy:runAlexaSkill"
+        ]
+    );
+
+    grunt.registerTask(
+        "deploy_skill_model",
+        "Upload skill model and wait the completion of its processing",
+        [
+            "shell:upload_model",
+            "shell:check_model_status"
         ]
     );
 

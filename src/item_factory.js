@@ -8,11 +8,11 @@ class ItemFactory {
         let timestamp = formatter.formatDateTime(submissionDate);
 
         return {
-                "type": { "S": "ALEXA_SUBMISSION" },
-                "date": { "S": date },
-                "timestamp": { "S": timestamp },
-                "user": { "S": user },
-                "text": { "S": entryValue + " days" }
+                'type': { 'S': 'ALEXA_SUBMISSION' },
+                'date': { 'S': date },
+                'timestamp': { 'S': timestamp },
+                'user': { 'S': user },
+                'text': { 'S': entryValue + ' days' }
             };
     }
 
@@ -22,12 +22,12 @@ class ItemFactory {
         let timestamp = formatter.formatDateTime(submissionDate);
 
         return {
-                "type": { "S": "PUBLIC_TWEET" },
-                "date": { "S": date },
-                "timestamp": { "S": timestamp },
-                "id": { "S": id },
-                "user": { "S": user },
-                "text": { "S": text }
+                'type': { 'S': 'PUBLIC_TWEET' },
+                'date': { 'S': date },
+                'timestamp': { 'S': timestamp },
+                'id': { 'S': id },
+                'user': { 'S': user },
+                'text': { 'S': text }
         };
     }
 
@@ -37,11 +37,11 @@ class ItemFactory {
         let timestamp = formatter.formatDateTime(submissionDate);
 
         return {
-                "type": { "S": "DIRECT_MESSAGE" },
-                "date": { "S": date },
-                "timestamp": { "S": timestamp },
-                "user": { "S": user },
-                "text": { "S": text }
+                'type': { 'S': 'DIRECT_MESSAGE' },
+                'date': { 'S': date },
+                'timestamp': { 'S': timestamp },
+                'user': { 'S': user },
+                'text': { 'S': text }
         };
     }
 }

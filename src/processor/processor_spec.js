@@ -1,19 +1,21 @@
-const fixtures  = require("../../fixtures/fixtures");
-const Processor = require("./processor");
+const fixtures  = require('../../fixtures/fixtures');
+const Processor = require('./processor');
 
-describe("Processor", () => {
+describe('Processor', () => {
 
-    const config = fixtures.use("conf");
-    const db = fixtures.use("dynamodb");
-    const sns = fixtures.use("sns");
-    
-    describe("generateStats", () => {
+    /* eslint-disable no-unused-vars */
+    const config = fixtures.use('conf');
+    const db = fixtures.use('dynamodb');
+    const sns = fixtures.use('sns');
+    /* eslint-enable no-unused-vars */
 
-        it("should do nothing when no results are returned", (done) => {
+    describe('generateStats', () => {
+
+        it('should do nothing when no results are returned', (done) => {
 
             let processor = new Processor(config);
 
-            spyOn(db, "scan").and.callFake(function(param, cb) {
+            spyOn(db, 'scan').and.callFake(function(param, cb) {
                 cb(null, {
                     Items: []
                 });
@@ -29,15 +31,15 @@ describe("Processor", () => {
 
         });
 
-        it("should handle errors coming from dynamodb", (done) => {
+        it('should handle errors coming from dynamodb', (done) => {
 
             let processor = new Processor(config);
 
-            spyOn(db, "scan").and.callFake(function(param, cb) {
-                cb("ERROR");
+            spyOn(db, 'scan').and.callFake(function(param, cb) {
+                cb('ERROR');
             });
 
-            processor.generateStats([ "2018-03-01" ], (error) => {
+            processor.generateStats([ '2018-03-01' ], (error) => {
 
                 expect(error).not.toBe(null);
 
@@ -47,17 +49,17 @@ describe("Processor", () => {
 
         });
 
-        it("process multiple dates", (done) => {
+        it('process multiple dates', (done) => {
 
             let processor = new Processor(config);
 
-            spyOn(db, "scan").and.callFake(function(param, cb) {
+            spyOn(db, 'scan').and.callFake(function(param, cb) {
                 cb(null, {
                     Items: []
                 });
             });
 
-            processor.generateStats([ "2018-03-01", "2018-03-02" ], (error) => {
+            processor.generateStats([ '2018-03-01', '2018-03-02' ], (error) => {
 
                 expect(error).toBe(null);
 

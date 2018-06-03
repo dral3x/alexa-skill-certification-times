@@ -3,7 +3,7 @@ const Twitter = require('twit');
 const Mustache  = require('mustache');
 const moment = require('moment');
 
-const formatter = require("../formatter");
+const formatter = require('../formatter');
 
 class TwitterPoster {
 
@@ -11,8 +11,8 @@ class TwitterPoster {
         this.table_daily = config.get('dynamodb.table_daily');
         this.twitter_config = config.get('twitter');
 
-        this.message_with_data = "Average certification time for {{date}}: {{average_days}} {{result_emoji}}. See trend on https://skillcertificationtimes.com and contribute with #skillcertificationtime or DM";
-        this.message_without_data = "No data for {{date}} 😧. You can contribute sharing your skill certification time with #skillcertificationtime or via DM";
+        this.message_with_data = 'Average certification time for {{date}}: {{average_days}} {{result_emoji}}. See trend on https://skillcertificationtimes.com and contribute with #skillcertificationtime or DM';
+        this.message_without_data = 'No data for {{date}} 😧. You can contribute sharing your skill certification time with #skillcertificationtime or via DM';
     }
 
     postYesterdayMetrics(callback) {
@@ -26,14 +26,14 @@ class TwitterPoster {
         this._getDailyAverage(date, (err, average, count) => {
 
             if (err) {
-                console.error("Unable to fetch daily average: "+err, err);
+                console.error('Unable to fetch daily average: '+err, err);
                 return callback(err);
             }
 
             this._postDailyAverage(date, average, count, (err, message) => {
 
                 if (err) {
-                    console.error("Unable to post daily average: "+err, err);
+                    console.error('Unable to post daily average: '+err, err);
                     return callback(err);
                 }
 
@@ -51,19 +51,19 @@ class TwitterPoster {
         var params = {
             TableName: this.table_daily,
             Key: {
-                "date": formatter.formatDate(date)
+                'date': formatter.formatDate(date)
             }
         };
 
         db.get(params, function(err, data) {
             
             if (err) {
-                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+                console.error('Unable to read item. Error JSON:', JSON.stringify(err, null, 2));
                 return callback(err);
             }
 
             // DEBUG
-            console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
+            console.log('GetItem succeeded:', JSON.stringify(data, null, 2));
 
             let avg = 0;
             let count = 0;
@@ -88,7 +88,7 @@ class TwitterPoster {
         });
 
         // DEBUG
-        console.log("Posting message: "+message);
+        console.log('Posting message: '+message);
 
         //callback(null, message);
         var tw_client = new Twitter(this.twitter_config);

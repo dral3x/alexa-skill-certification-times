@@ -7,14 +7,14 @@ class Processor {
     constructor(config) {
         this.table_source = config.get('dynamodb.table_datapoints');
         this.table_daily = config.get('dynamodb.table_daily');
-        this.topic = config.get("sns.topic_request_generate_website");
+        this.topic = config.get('sns.topic_request_generate_website');
     }
 
     generateStats(dates, callback) {
 
         if (!dates || dates.length == 0) {
             // Return without notify topic
-            return callback(null, "Nothing to process");
+            return callback(null, 'Nothing to process');
         }
 
         this._processDates(dates, (err) => {
@@ -25,13 +25,13 @@ class Processor {
             }
 
             // Handle success
-            notifier.publish(this.topic, { "dates": dates }, (err) => {
+            notifier.publish(this.topic, { 'dates': dates }, (err) => {
                 
                 if (err) {
-                    console.error("Unable to publish on topic "+this.topic+": "+err);
+                    console.error('Unable to publish on topic '+this.topic+': '+err);
                 }
 
-                callback(null, "Processed "+dates.length+" dates");
+                callback(null, 'Processed '+dates.length+' dates');
             });
 
         })
@@ -56,7 +56,7 @@ class Processor {
 
     _processDate(date, callback) {
 
-        console.log("Processing data for date "+date);
+        console.log('Processing data for date '+date);
 
         this._fetchDailyData(date, (err, values) => {
 
@@ -85,29 +85,29 @@ class Processor {
 
         var params = {
             TableName: this.table_source,
-            ProjectionExpression: "#dt, #ts, #tx",
-            FilterExpression: "#dt = :selection",
+            ProjectionExpression: '#dt, #ts, #tx',
+            FilterExpression: '#dt = :selection',
             ExpressionAttributeNames: {
-                "#ts": "timestamp",
-                "#dt": "date",
-                "#tx": "text",
+                '#ts': 'timestamp',
+                '#dt': 'date',
+                '#tx': 'text',
             },
             ExpressionAttributeValues: {
-                ":selection": { 'S': date }
+                ':selection': { 'S': date }
             }
         };
 
         function onScan(err, data) {
             
             if (err) {
-                console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+                console.error('Unable to scan the table. Error JSON:', JSON.stringify(err, null, 2));
                 return callback(err);
             }
 
             // Check all tweets
 
             data.Items.forEach(function(tweet) {
-                console.log(tweet.timestamp['S'] + ": ", tweet.text['S']);
+                console.log(tweet.timestamp['S'] + ': ', tweet.text['S']);
 
                 let value = Extractor.readDays(tweet.text['S']);
                 if (value) {
@@ -117,8 +117,8 @@ class Processor {
 
             // continue scanning when LastEvaluatedKey is defined
 
-            if (typeof data.LastEvaluatedKey != "undefined") {
-                console.log("Scanning for more...");
+            if (typeof data.LastEvaluatedKey != 'undefined') {
+                console.log('Scanning for more...');
                 params.ExclusiveStartKey = data.LastEvaluatedKey;
                 db.scan(params, onScan);
             } else {
@@ -134,10 +134,10 @@ class Processor {
 
     _generateDailyStats(date, values, callback) {
 
-        console.log("values "+values);
+        console.log('values '+values);
 
         if (values.length == 0) {
-            console.log("day "+date+" has no data");
+            console.log('day '+date+' has no data');
             return callback(null);
         }
 
@@ -147,22 +147,23 @@ class Processor {
         });
 
         let avg = sum / values.length;
-        console.log("day "+date+" avg: "+avg);
+        console.log('day '+date+' avg: '+avg);
 
         var params = {
             TableName: this.table_daily,
             Item: {
-                "date": date,
-                "count": values.length,
-                "avg": avg
+                'date': date,
+                'count': values.length,
+                'avg': avg
             }
         };
 
         let db = new AWS.DynamoDB.DocumentClient();
+        // eslint-disable-next-line no-unused-vars
         db.put(params, (err, data) => {
 
             if (err) {
-                console.log("Unable to insert daily data "+date+": "+JSON.stringify(err, null, 2));
+                console.log('Unable to insert daily data '+date+': '+JSON.stringify(err, null, 2));
                 return callback(err);
             }
 

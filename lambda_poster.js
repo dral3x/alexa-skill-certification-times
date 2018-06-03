@@ -5,10 +5,10 @@ const config = require('./src/conf');
 
 exports.handler = (event, context, callback) => {
 
-    console.log("Received event: "+JSON.stringify(event, null, 2));
+    console.log('Received event: '+JSON.stringify(event, null, 2));
     
     // Configure AWS services
-    AWS.config.update({region: config.get("aws.region")});
+    AWS.config.update({region: config.get('aws.region')});
 
     // Configure Generator
     let exporter = new TwitterPoster(config);
