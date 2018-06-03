@@ -1,5 +1,5 @@
 conf/prod.js
-conf/test.js
+conf/test_ale.js
 dist
 node_modules
 secrets.json
