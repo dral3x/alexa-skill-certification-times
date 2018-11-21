@@ -29,11 +29,11 @@ describe("Data", () => {
 
         expect(new Data("2018-03-30").endDate()).toBe("2018-03-30");
         expect(new Data("2018-03-16").endDate()).toBe("2018-03-16");
-        
+
     });
 
     it("test example 1", () => {
-        
+
         let data = new Data("2018-03-16");
 
         data.addEntry("2018-03-08", 15, 1);
@@ -45,11 +45,11 @@ describe("Data", () => {
         expect(result).not.toBe(null);
         expect(result.overall.average).toBe(5);
         expect(result.overall.average_text).toBe("5 days");
-        
+
     });
 
     it("text example 2", () => {
-        
+
         let data = new Data("2018-03-16");
 
         data.addEntry("2018-03-08", 15, 1);
@@ -65,11 +65,11 @@ describe("Data", () => {
         expect(result.overall.count).toBe(6);
         expect(result.overall.diff).toBe(-4);
         expect(result.overall.diff_text).toBe("-4 days");
-        
+
     });
 
     it("text example 3", () => {
-        
+
         let data = new Data("2018-03-16");
 
         data.addEntry("2018-03-08", 1, 1);
@@ -83,11 +83,11 @@ describe("Data", () => {
         expect(result.overall.count).toBe(1);
         expect(result.overall.diff).toBe(-1);
         expect(result.overall.diff_text).toBe("-1 day");
-        
+
     });
 
     it("text example 4", () => {
-        
+
         let data = new Data("2018-03-16");
 
         data.addEntry("2018-03-08", 2, 1);
@@ -101,6 +101,51 @@ describe("Data", () => {
         expect(result.overall.count).toBe(1);
         expect(result.overall.diff).toBe(1);
         expect(result.overall.diff_text).toBe("+1 day");
-        
+
+    });
+
+    it("test data with positive diff", () => {
+
+        let data = new Data("2018-03-16");
+
+        data.addEntry("2018-03-08", 2, 1);
+        data.addEntry("2018-01-08", 1, 1);
+
+        let result = data.export();
+
+        expect(result).not.toBe(null);
+        expect(result.hasDiff).toBe(true);
+        expect(result.noDiff).toBe(false);
+
+    });
+
+    it("test data with negative diff", () => {
+
+        let data = new Data("2018-03-16");
+
+        data.addEntry("2018-03-08", 1, 1);
+        data.addEntry("2018-01-08", 2, 1);
+
+        let result = data.export();
+
+        expect(result).not.toBe(null);
+        expect(result.hasDiff).toBe(true);
+        expect(result.noDiff).toBe(false);
+
+    });
+
+    it("test data without diff", () => {
+
+        let data = new Data("2018-03-16");
+
+        data.addEntry("2018-03-08", 1, 1);
+        data.addEntry("2018-01-08", 1, 1);
+
+        let result = data.export();
+
+        expect(result).not.toBe(null);
+        expect(result.hasDiff).toBe(false);
+        expect(result.noDiff).toBe(true);
+
     });
 });

@@ -6,10 +6,11 @@ const config = require('./src/conf');
 
 function extractDatesFromEvent(event) {
 
-    let message = event.Records[0].Sns.Message;
+    let message = event.hasOwnProperty('Records') ? event.Records[0].Sns.Message : JSON.stringify(event, null, 2);
     if (!message) {
         return [];
     }
+
     let dates = JSON.parse(message).dates;
     if (!dates) {
         return [];
@@ -19,7 +20,7 @@ function extractDatesFromEvent(event) {
 }
 
 exports.handler = (event, context, callback) => {
-    
+
     console.log("Received event: "+JSON.stringify(event, null, 2));
 
     // Configure AWS services

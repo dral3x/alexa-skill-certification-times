@@ -31,7 +31,7 @@
           {{#last_30_days}}
           [new Date('{{date}}'), {{value}}],
           {{/last_30_days}}
-          
+
           /*
           // Testing data
           [new Date('2018-03-01'), 15],
@@ -83,7 +83,14 @@
         <div class="main-item summary">
           <div class="title">The average time of the last 30 days</div>
           <div class="huge accent">{{overall.average_text}}</div>
-          <div><b>{{overall.diff_text}}</b> compared to the previous cycle</div>
+          <div>
+            {{#hasDiff}}
+            <b>{{overall.diff_text}}</b> compared to the previous cycle
+            {{/hasDiff}}
+            {{#noDiff}}
+            like in the previous cycle
+            {{/noDiff}}
+          </div>
           <div>based on {{overall.count}} reports</div>
         </div>
 
@@ -115,7 +122,7 @@
   			<div class="faq-item-first">
           <div class="faq-title">FAQ</div>
         </div>
-        
+
         <div class="faq-item">
           <div class="faq-question">What is this?</div>
           <div class="faq-answer">This site tracks the average Alexa Skill certification times for any kind of skill, using data crowdsourced from Alexa developers.</div>
@@ -125,13 +132,13 @@
           <div class="faq-question">Where does this data come from?</div>
           <div class="faq-answer">
             Let me be super clear: Amazon <b>does NOT share</b> any official nor internal information with this site.
-            Data are based only on information gathered from Twitter, where people voluntarily post their latest certification times using the <a href="https://twitter.com/hashtag/skillcertificationtime">#skillcertificationtime</a> hash tag. 
+            Data are based only on information gathered from Twitter, where people voluntarily post their latest certification times using the <a href="https://twitter.com/hashtag/skillcertificationtime">#skillcertificationtime</a> hash tag.
             More details are available in the <a href="contribute.html">How to Contribute</a> page.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">How do I contribute data?</div> 
+          <div class="faq-question">How do I contribute data?</div>
           <div class="faq-answer">
             It's simple! Just post to Twitter a message with the <a href="https://twitter.com/hashtag/skillcertificationtime">#skillcertificationtime</a> hash tag and the number of days it tooks to your skill to be certified. If you want, you can also add your skill name and link.
             Please do continue to post your times, this site is useless without constant data.
@@ -150,11 +157,11 @@
           <div class="faq-question">Can I be notified of the numbers automatically?</div>
           <div class="faq-answer">Yes. The <a href="https://twitter.com/skillcerttimes">@skillcerttimes</a> account on Twitter will post once a day with the latest averages.</div>
         </div>
-        
+
         <div class="faq-item">
           <div class="faq-question">How accurate is this data?</div>
           <div class="faq-answer">
-            The averages on this site are based only on the data gathered from the community which are a very small subset of the total number of skills which go through certification each day. 
+            The averages on this site are based only on the data gathered from the community which are a very small subset of the total number of skills which go through certification each day.
             However in our experience it does give a reasonable indication of how certification times are changing over time.
           </div>
         </div>
@@ -162,7 +169,7 @@
         <div class="faq-item">
           <div class="faq-question">How is the average calculated?</div>
           <div class="faq-answer">
-            The average for each day on the graph is calculated using a simple average based on historic data (using 30 days of data). 
+            The average for each day on the graph is calculated using a simple average based on historic data (using 30 days of data).
             The current number of days average is simply the average of the same data points from that graph rounded to the nearest whole day.
           </div>
         </div>
@@ -170,7 +177,7 @@
         <div class="faq-item">
           <div class="faq-question">This site reminds me of <b>appreviewtimes</b></div>
           <div class="faq-answer">
-            It does because it IS based on <a href="http://appreviewtimes.com">appreviewtimes.com</a>. 
+            It does because it IS based on <a href="http://appreviewtimes.com">appreviewtimes.com</a>.
             A big Thanks goes to <a href="https://twitter.com/daveverwer">Dave Verwer</a> and his Shiny Development team for the original idea 👏</div>
         </div>
 
@@ -180,7 +187,7 @@
 
   		<div class="footer-container default-padding">
   			<div class="footer-item disclaimer">
-          <b>DISCLAIMER:</b> 
+          <b>DISCLAIMER:</b>
           This website is not associated with the Amazon Inc. in any way and cannot be considered an Amazon official source of information
           <br />
           Amazon, Alexa and all related logos are trademarks of Amazon.com, Inc. or its affiliates.
