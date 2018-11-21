@@ -12,6 +12,8 @@ describe("Extractor", () => {
 
             expect(Extractor.readDays("12 days")).toBe(12);
 
+            expect(Extractor.readDays("5 working days")).toBe(5);
+
         });
 
         it("should returns NULL when missing", () => {
@@ -35,6 +37,7 @@ describe("Extractor", () => {
             expect(Extractor.readDays("Unicorn Adventures took less then 1 day #iosreviewtime https://t.co/9n4sQZdtCW #gamedev #iosdev #SwiftLang https://t.co/j7PpnsZ2VO")).toBe(1);
             expect(Extractor.readDays("RT @cr_wells: Unicorn Adventures took less then 1 day #iosreviewtime ")).toBe(1);
             expect(Extractor.readDays("I have 2 skills released so far. Both were certified within 1.5 days. Even on the weekend! #skillcertificationtime")).toBe(1.5);
+            expect(Extractor.readDays("Spreaker Podcast Radio Player #AlexaSkill latest update has been approved in 1 working day! 🎉… https://t.co/aOculSxIef")).toBe(1);
         });
 
     });

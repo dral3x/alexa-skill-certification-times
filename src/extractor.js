@@ -4,7 +4,7 @@ module.exports = {
 
     readDays: function(string) {
 
-        var pattern = /(\d+(\.\d+)?) day(s?)/;
+        var pattern = /(\d+(\.\d+)?) (working )?day(s?)/;
         var match = string.match(pattern);
         return match != null ? parseFloat(match[1], 10) : null;
     },
@@ -18,10 +18,10 @@ module.exports = {
         pattern = /(\d{4})\-(\d{1,2})\-(\d{1,2})/;
         match = string.match(pattern);
         if (match != null) {
-            let date = moment([match[1], match[2]-1, match[3]]); 
+            let date = moment([match[1], match[2]-1, match[3]]);
             return date.isValid() ? date : null;
         }
-		
+
         // format: D MMM
         pattern = /(\d{1,2}) (\w{3})/;
         match = string.match(pattern);
