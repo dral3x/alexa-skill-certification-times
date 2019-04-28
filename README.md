@@ -9,3 +9,20 @@ Deployed on AWS
 
 
 HTML pages are template based and rendered with [mustache.js](https://github.com/janl/mustache.js/) library.
+
+
+Development
+===
+
+Initial setup
+
+```
+nvm use
+yarn install
+```
+
+Run tests
+
+```
+grunt test
+```
