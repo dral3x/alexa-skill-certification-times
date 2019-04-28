@@ -23,7 +23,7 @@ class Importer {
 
         console.log("[ALL] Importing data");
 
-        let importers = [ 
+        let importers = [
             this._importPublicTweets.bind(this),
             this._importDirectMessages.bind(this)
         ];
@@ -67,14 +67,14 @@ class Importer {
     _importPublicTweets(callback) {
 
         console.log("[TWEETS] Importing data");
-        
+
         async.waterfall([
             (cb) => cb(null, null),
             this._fetchLastPublicTweetId.bind(this),
             this._fetchPublicTweets.bind(this),
             this._processPublicTweets.bind(this)
         ], function (err, result) {
-        
+
             if (err) {
                 console.error('[TWEETS] Unable to process tweets: '+err);
                 return callback(err);
@@ -90,14 +90,14 @@ class Importer {
     _importDirectMessages(callback) {
 
         console.log("[DM] Importing data");
-        
+
         async.waterfall([
             (cb) => cb(null, null),
             this._fetchLastDirectMessageTimestamp.bind(this),
             this._fetchDirectMessages.bind(this),
             this._processDirectMessages.bind(this)
         ], function (err, result) {
-        
+
             if (err) {
                 console.error('[DM] Unable to process direct messages: '+err);
                 return callback(err);
@@ -115,10 +115,11 @@ class Importer {
     _fetchLastPublicTweetId(anything, callback) {
 
         this._readState("importer_twitter_public_tweets_last_id", (err, state) => {
-            
+
             if (err) {
                 callback(err);
             } else {
+                console.log('[TWEETS] last tweet id: ' + state);
                 callback(null, state);
             }
 
@@ -126,15 +127,15 @@ class Importer {
     }
 
     _fetchPublicTweets(last_id, callback) {
-        
+
         var tw_client = new Twitter(this.twitter_config);
-        var params = { 'q': this.hashtag };
+        var params = { 'q': this.hashtag, 'result_type': 'recent', 'count': 100 };
         if (last_id) {
             params["since_id"] = last_id;
         }
 
         tw_client.get('search/tweets', params, function (err, data, response) {
-    
+
             if (err) {
                 console.error('twitter status code:' + err.statusCode + ' message: ' +err.message, err);
                 return callback(err);
@@ -150,16 +151,16 @@ class Importer {
                 return callback(err);
             }
 
-            console.log('Processing response 200');
+            console.log('[TWEETS] Processing response 200');
 
             callback(null, data.statuses)
-        
+
         });
     }
 
     _processPublicTweets(statuses, callback) {
 
-        console.log('processing '+statuses.length+ ' tweets');
+        console.log('[TWEETS] processing '+statuses.length+ ' tweets');
 
         // DEBUG
         //console.log('statuses: '+ JSON.stringify(statuses));
@@ -170,7 +171,7 @@ class Importer {
 
         for (var i = 0, len = statuses.length; i < len; i++) {
             var status = statuses[i];
-    
+
             let id = status.id_str;
             let created_at = new Date(status.created_at);
             let timestamp = formatter.formatDateTime(created_at);
@@ -216,7 +217,7 @@ class Importer {
                 callback(null, Array.from(dates));
 
             });
-            
+
         });
     }
 
@@ -225,19 +226,19 @@ class Importer {
     _fetchLastDirectMessageTimestamp(anything, callback) {
 
         this._readState("importer_twitter_dm_last_timestamp", (err, state) => {
-            
+
             callback(null, state);
-            
+
         });
     }
 
     _fetchDirectMessages(last_timestamp, callback) {
-        
+
         var tw_client = new Twitter(this.twitter_config);
         var params = {};
 
         tw_client.get('direct_messages/events/list', params, function (err, data, response) {
-    
+
             if (err) {
                 console.error('twitter status code:' + err.statusCode + ' message: ' +err.message, err);
                 return callback(err);
@@ -265,6 +266,8 @@ class Importer {
                 }
             }
 
+            console.log('[DM] Found '+events.length+' messages to process');
+
             callback(null, events);
 
         });
@@ -280,13 +283,13 @@ class Importer {
 
         for (var i = 0, len = messages.length; i < len; i++) {
             var message = messages[i];
-    
+
             let created_at = new Date(parseInt(message.created_timestamp, 10));
             let text = message.message_create.message_data.text;
             let user = message.message_create.sender_id;
             let timestamp = formatter.formatDateTime(created_at);
             let date = Extractor.extractDate(text) || created_at;
-            
+
             console.log('[DM] from: '+ user + ' timestamp: '+ timestamp + ' text: '+ text);
 
             if (this.users_blacklist.indexOf(user) >= 0) {
@@ -304,9 +307,9 @@ class Importer {
 
             if (messages.length > 0) {
                 this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
-            
+
                     callback(null, []);
-            
+
                 });
             } else {
                 callback(null, []);
@@ -322,11 +325,11 @@ class Importer {
             }
 
             this._writeState("importer_twitter_dm_last_timestamp", messages[0].created_timestamp, (err, state) => {
-            
+
                 callback(null, Array.from(dates));
-            
+
             });
-            
+
         });
     }
 
@@ -343,12 +346,12 @@ class Importer {
 
         let tableRequests = {}
         tableRequests[this.table] = requests;
-        
+
         var params = { RequestItems: tableRequests };
 
         let db = new AWS.DynamoDB({ apiVersion: '2012-10-08' });
         db.batchWriteItem(params, function(err, data) {
-            
+
             if (err) {
                 console.log("Error", err);
                 callback(err);
@@ -372,7 +375,7 @@ class Importer {
         };
 
         db.get(params, function(err, data) {
-            
+
             if (err) {
                 console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
                 return callback(err);
@@ -389,7 +392,7 @@ class Importer {
     }
 
     _writeState(key, state, callback) {
-        
+
         let db = new AWS.DynamoDB.DocumentClient();
 
         var params = {
@@ -401,7 +404,7 @@ class Importer {
         };
 
         db.put(params, function(err, data) {
-            
+
             if (err) {
                 console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
                 return callback(err);
@@ -414,7 +417,7 @@ class Importer {
 
         });
     }
-    
+
 }
 
 module.exports = Importer;
