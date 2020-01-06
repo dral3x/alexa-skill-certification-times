@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="Find out the average certification times for Alexa Skills" />
+    <meta name="google-site-verification" content="nT4zsLKuyHDeCnbxO6rFhENd1bP99e9shOzmvPcumWs" />
+    <title>Average Alexa Skill Certification Times</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Average time');
+
+        data.addRows([
+          [new Date('2018-03-01'), 1.1],
+          [new Date('2018-03-02'), 1.6],
+          [new Date('2018-03-03'), 1.2],
+          [new Date('2018-03-04'), 1.3],
+          [new Date('2018-03-05'), 1.1],
+          [new Date('2018-03-06'), 1],
+          [new Date('2018-03-07'), 1.2],
+          [new Date('2018-03-08'), 1.1],
+          [new Date('2018-03-09'), 1.3],
+          [new Date('2018-03-10'), 1.1],
+          [new Date('2018-03-11'), 1],
+          [new Date('2018-03-12'), 1.2],
+          [new Date('2018-03-13'), 1.1],
+          [new Date('2018-03-14'), 1.3],
+          [new Date('2018-03-15'), 1.1],
+        ]);
+
+        var options = {
+          chart: {
+          },
+          legend: {
+            position: "none"
+          },
+          height: 300
+        };
+
+        var chart = new google.charts.Line(document.getElementById('chart'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+      }
+    </script>
+
+  </head>
+  <body>
+
+      <!-- Header section -->
+
+      <div class="header-container">
+        <div class="header-item-text huge">
+          Average <span class="accent">Alexa Skill</span> Certification Times
+        </div>
+        <div class="header-item-image">
+          <img src="alexa-devices.png" />
+        </div>
+      </div>
+
+      <!-- Banner section -->
+
+      <div class="banner-container">
+        <div class="banner-item">
+          <b>DISCLAIMER:</b> This website is not associated with the Amazon Inc. in any way and cannot be considered an Amazon official source of information.
+        </div>
+      </div>
+
+      <!-- Main section -->
+
+      <div class="main-container">
+        <div class="main-item summary">
+          <div class="title">The average time of the last 30 days</div>
+          <div class="huge accent">1.2 days</div>
+          <div>like in the previous cycle</div>
+          <div>based on very few reports</div>
+        </div>
+
+        <div class="main-item">
+          <div class="title">Trends graph for the last 30 days</div>
+          <div id="chart"></div>
+        </div>
+      </div>
+
+      <!-- Footer section -->
+
+      <div class="footer-container default-padding">
+
+        <div class="footer-item">
+          Created by <a href="https://twitter.com/dral3x">Alessandro Calzavara</a>, with the precious help of <a href="https://twitter.com/brigitadaisy">Brigita</a> and <a href="https://twitter.com/emanuele_r">Emanuele</a> ❤️️.
+        </div>
+      </div>
+
+      <!-- Overlay -->
+
+      <div class="overlay">
+          <div class="middle">
+            <h1>So long, and thanks for all the <span class="accent">fish</span></h1>
+          </div>
+        <div class="bottomleft">
+          <p>
+              Thanks to everyone that contributed in making this project working and useful in the past.
+              <br/>
+              Sadly without contributions, this project
+              <a href="https://www.alessandrocalzavara.com/alexaskill/sunset-on-skillcertificationtimes/">cannot continue to exist</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-367202-7"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-367202-7');
+      </script>
+  </body>
+</html>

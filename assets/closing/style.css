@@ -1,0 +1,329 @@
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 21px;
+  margin: 0px;
+}
+
+p {
+  margin: 0px 5px 5px 0px;
+}
+
+a:link, a:visited {
+  color: #5A99FF;
+  font-weight: bold;
+}
+a:hover, a:active {
+  color: #5A99FF;
+  font-weight: bold;
+}
+
+/* Layout */
+
+.default-padding {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.extra-padding {
+}
+
+@media only screen and (min-width: 768px) {
+  .default-padding {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .extra-padding {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+
+  background-color: black;
+  color: white;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+.header-item-image {
+  flex: 1;
+
+  width: 200;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-item-image {
+    flex: initial;
+  }
+}
+
+.header-item-text {
+  flex: 1;
+}
+
+.banner-container {
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(90, 153, 255, 0.4);
+  color: #2C4C81;
+  padding: 20px;
+}
+
+.banner-item {
+
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-container {
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-container {
+    flex-direction: row;
+
+    padding-right: 0px;
+  }
+}
+
+.main-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-item {
+    margin-bottom: 80px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-item {
+    margin-right: 80px;
+  }
+}
+
+.contribute-container {
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(90, 153, 255, 0.1);
+  color: black;
+  margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-container {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.contribute-container-inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contribute-item {
+  display: flex;
+
+  padding-top: 20px;
+
+  font-weight: lighter;
+}
+
+.contribute-item-last {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-item {
+    padding-right: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contribute-item {
+    padding-top: 0px;
+  }
+
+  .contribute-item-last {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #F4F4F4;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin-top: 40px;
+}
+
+.faq-item-first {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+
+  font-size: 16px;
+}
+
+.footer-item {
+  justify-content: center;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Styles */
+
+.huge {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  .huge {
+    font-size: 60px;
+  }
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.accent {
+  color: #5A99FF;
+}
+
+.button {
+  display: inline-block;
+  background-color: #5A99FF;
+  border: none;
+  padding: 30px 60px;
+  border-radius: 12px;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+}
+.button:link, .button:visited, .button:hover, .button:active {
+  color: white;
+}
+
+.faq-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.faq-question {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.faq-answer {
+  font-size: 21px;
+  font-weight: lighter;
+}
+
+.disclaimer {
+  font-size: 21px;
+  color: #BA3030;
+}
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.75); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+
+  color: white;
+}
+
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  padding: 30px 60px;
+}
